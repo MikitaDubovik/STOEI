@@ -1,0 +1,27 @@
+﻿using System.Data.Entity;
+using ORM.Entity;
+using ORM.Migrations;
+
+namespace ORM.Context
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext()
+            : base("PostService")
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+        }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<UserLikesEntity> UserLikes { get; set; }
+    }
+}
