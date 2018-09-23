@@ -72,6 +72,13 @@ namespace MvcPL.Controllers
 
         public ActionResult UploadPost()
         {
+            ViewBag.IsAd = false;
+            return View("UploadPost");
+        }
+
+        public ActionResult MakeAd()
+        {
+            ViewBag.IsAd = true;
             return View("UploadPost");
         }
 

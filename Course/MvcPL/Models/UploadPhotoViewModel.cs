@@ -8,5 +8,6 @@ namespace MvcPL.Models
         public string Description { get; set; }
         public string Tags { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
+        public bool IsAd { get; set; }
     }
 }

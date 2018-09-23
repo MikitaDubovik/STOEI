@@ -217,11 +217,15 @@
 }
 
 .editProfile {
-    margin-top: 35px;
+    margin-top: 15px;
 }
 
 .uploadPhoto {
-    margin-top: 10px;
+    margin-top: 15px;
+}
+
+.makeAd {
+    margin-top: 15px;
 }
 
 .loginProfile {

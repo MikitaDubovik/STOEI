@@ -270,10 +270,6 @@
     <Content Include="Views\Shared\_SearchForm.cshtml" />
     <Content Include="Views\Shared\_FoundImages.cshtml" />
     <Content Include="Views\Shared\_LoadMore.cshtml" />
-    <Content Include="Views\Account\_SignIn.cshtml" />
-    <Content Include="Views\Account\_SignUp.cshtml" />
-    <Content Include="Views\Account\SignUp.cshtml" />
-    <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\Shared\_Profile_SignOut.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\UploadPost.cshtml" />
@@ -289,6 +285,11 @@
     <Content Include="Views\Posts\_ImageGallery.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Account\_SignIn.cshtml" />
+    <Content Include="Views\Account\_SignUp.cshtml" />
+    <Content Include="Views\Profile\MakeAd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

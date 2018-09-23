@@ -19,7 +19,7 @@
 @section profile
 {
     <div class="container container-profile">
-        <div class="profilePost col-lg-4 col-md-4">
+        <div class="profilePhoto col-lg-4 col-md-4">
             @if (Model.ProfilePost == null)
             {
                 <img src="~/Content/default_photo.jpg" height="200px" width="auto" style="border-radius:10px">
@@ -44,9 +44,13 @@
                 <a href="@Url.Action("EditProfile", "Profile")" class="btn ml-auto my-2 my-sm-0 signUpButton" style="width: 150px"
                    type="submit">Edit Profile</a>
             </div>
-            <div class="col-lg-12 col-md-12 uploadPost">
+            <div class="col-lg-12 col-md-12 uploadPhoto">
                 <a href="@Url.Action("UploadPost", "Profile")" class="btn ml-auto my-2 my-sm-0 signUpButton" style="width: 150px"
                    type="submit">Upload Post</a>
+            </div>
+            <div class="col-lg-12 col-md-12 makeAd">
+                <a href="@Url.Action("MakeAd", "Profile")" class="btn ml-auto my-2 my-sm-0 signUpButton" style="width: 150px"
+                   type="submit">Make advertising</a>
             </div>
         </div>
 
@@ -63,7 +67,7 @@
                 @Html.Partial("_FoundImages", (PaginationViewModel<PostViewModel>)ViewBag.Posts)
             }
         </div>
-        <div id="loadMore" class="loadMore">
+        <div class="loadMore" id="loadMore">
             @if (!emptySearch)
             {
                 @Html.Partial("_ProfilePosts", (PaginationViewModel<PostViewModel>)ViewBag.Posts)

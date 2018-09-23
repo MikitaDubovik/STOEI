@@ -26,7 +26,7 @@ var ReadImage = function (file) {
             $("#targetImg").attr('src', _file.target.result);
             $("#imgPreview").show();
             $("#UploadButton").show();
-
+            $("#ContinueButton").show();
         }
     }
 }

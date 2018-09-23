@@ -23,16 +23,9 @@
 </div>
 <div id="listOfPages">
     
-    @*<a href="#" onclick="GetImages('@Model.PageInfo.UrlPart', 1)" class="btn signUpButton hide" id="previous">
-        <i class="icon ion-ios-arrow-left" style="font-size: 24px;"></i>
-    </a>*@
     @{
         int j;
     }
-
-    @*<a id="page1" href="#" class="" onclick="GetImages('@Model.PageInfo.UrlPart', 1)">
-        1
-    </a>*@
 
     @for (j = 0; j < Model.PageInfo.TotalPages && j < 5; j++)
     {
