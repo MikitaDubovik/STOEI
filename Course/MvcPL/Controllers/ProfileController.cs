@@ -84,10 +84,9 @@ namespace MvcPL.Controllers
         [HttpPost]
         public ActionResult MakeAd(UploadAdViewModel photo)
         {
-            var list = new SelectList(CultureHelper.CountryList(), "Key", "Value");
-            List<SelectListItem> sortList = list.OrderBy(p => p.Text).ToList();
-            ViewBag.Countries = new MultiSelectList(sortList, "Value", "Text");
-            return View("MakeAdFeatures");
+            FeelViewBagWithAd();
+
+            return View("MakeAdFeatures", photo);
         }
 
         [HttpPost]
@@ -119,5 +118,30 @@ namespace MvcPL.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
+        private void FeelViewBagWithAd()
+        {
+            var list = new SelectList(AdHelper.CountryList(), "Key", "Value");
+            List<SelectListItem> sortList = list.OrderBy(p => p.Text).ToList();
+            ViewBag.Countries = new MultiSelectList(sortList, "Value", "Text");
+
+            list = new SelectList(AdHelper.SexList(), "Value", "Key");
+            sortList = list.OrderBy(p => p.Text).ToList();
+            ViewBag.Sex = new MultiSelectList(sortList, "Value", "Text");
+
+            list = new SelectList(AdHelper.AgeListBegin(), "Value", "Key");
+            sortList = list.OrderBy(p => int.Parse(p.Text)).ToList();
+            sortList.Add(new SelectListItem{Text = "", Value = ""});
+            ViewBag.AgeBegin = new MultiSelectList(sortList, "Value", "Text");
+
+            list = new SelectList(AdHelper.AgeListEnd(), "Value", "Key");
+            sortList = list.OrderBy(p => p.Text).ToList();
+            sortList.Add(new SelectListItem { Text = "", Value = "" });
+            ViewBag.AgeEnd = new MultiSelectList(sortList, "Value", "Text");
+
+
+            list = new SelectList(AdHelper.LanguagesList(), "Value", "Key");
+            sortList = list.OrderBy(p => p.Text).ToList();
+            ViewBag.Languages = new MultiSelectList(sortList, "Value", "Text");
+        }
     }
 }

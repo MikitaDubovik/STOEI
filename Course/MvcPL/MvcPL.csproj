@@ -233,7 +233,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\CultureHelper.cs" />
+    <Compile Include="Helper\AdHelper.cs" />
     <Compile Include="Infrastructure\DependencyModule.cs" />
     <Compile Include="Infrastructure\MvcMapper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
