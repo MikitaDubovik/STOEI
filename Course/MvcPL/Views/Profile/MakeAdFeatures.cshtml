@@ -1,0 +1,20 @@
+﻿@using System.Web.Optimization
+@model MvcPL.Models.UploadAdViewModel
+@{
+    ViewBag.Title = "UploadPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section SearchForm
+{
+    @Html.Partial("_SearchFormAuthRedirectToHome")
+}
+
+@section body
+{
+    <div class="form-group row justify-content-center">
+        <div class="col-md-6">
+            @Html.DropDownList("DDLTest", (MultiSelectList)ViewBag.Countries, new { multiple = "multiple" })
+        </div>
+    </div>
+}

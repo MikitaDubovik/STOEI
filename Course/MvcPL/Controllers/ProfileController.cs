@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using BLL.Interface.Services;
+using MvcPL.Helper;
 using MvcPL.Infrastructure;
 using MvcPL.Models;
 using MvcPL.Models.Pagination;
@@ -72,15 +73,29 @@ namespace MvcPL.Controllers
 
         public ActionResult UploadPost()
         {
-            ViewBag.IsAd = false;
             return View("UploadPost");
         }
 
         public ActionResult MakeAd()
         {
-            ViewBag.IsAd = true;
-            return View("UploadPost");
+            return View("MakeAd");
         }
+
+        [HttpPost]
+        public ActionResult MakeAd(UploadAdViewModel photo)
+        {
+            var list = new SelectList(CultureHelper.CountryList(), "Key", "Value");
+            List<SelectListItem> sortList = list.OrderBy(p => p.Text).ToList();
+            ViewBag.Countries = new MultiSelectList(sortList, "Value", "Text");
+            return View("MakeAdFeatures");
+        }
+
+        [HttpPost]
+        public ActionResult MakeAdFeatures(UploadAdViewModel photo)
+        {
+            return RedirectToAction("Index", "Profile");
+        }
+
 
         [HttpPost]
         public ActionResult UploadPost(UploadPostViewModel photo)
