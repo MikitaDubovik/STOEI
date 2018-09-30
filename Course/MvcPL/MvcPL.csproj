@@ -200,6 +200,7 @@
     <Content Include="fonts\ionicons.ttf" />
     <Content Include="fonts\ionicons.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\calculate.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -234,6 +235,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\AdHelper.cs" />
+    <Compile Include="Helper\PriceCounter.cs" />
     <Compile Include="Infrastructure\DependencyModule.cs" />
     <Compile Include="Infrastructure\MvcMapper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />

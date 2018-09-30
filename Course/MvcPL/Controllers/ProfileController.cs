@@ -82,16 +82,34 @@ namespace MvcPL.Controllers
         }
 
         [HttpPost]
-        public ActionResult MakeAd(UploadAdViewModel photo)
+        public ActionResult MakeAd(UploadAdViewModel post)
         {
             FeelViewBagWithAd();
 
-            return View("MakeAdFeatures", photo);
+            return View("MakeAdFeatures", post);
+        }
+
+        public ActionResult Calculate(UploadAdViewModel post)
+        {
+            post.Countries = Request.Form["DdlCountries"];
+            post.Sex = Request.Form["DdlSex"];
+            post.Age = Request.Form["DdlAgeBegin"] + " " + Request.Form["DdlAgeEnd"];
+            post.Language = Request.Form["DdlLanguage"];
+
+            var price = PriceCounter.Calculate(post);
+            return PartialView(price);
         }
 
         [HttpPost]
-        public ActionResult MakeAdFeatures(UploadAdViewModel photo)
+        public ActionResult MakeAdFeatures(UploadAdViewModel post)
         {
+            post.Countries = Request.Form["DdlCountries"];
+            post.Sex = Request.Form["DdlSex"];
+            post.Age = Request.Form["DdlAgeBegin"] + " " + Request.Form["DdlAgeEnd"];
+            post.Language = Request.Form["DdlLanguage"];
+
+            var price = PriceCounter.Calculate(post);
+
             return RedirectToAction("Index", "Profile");
         }
 

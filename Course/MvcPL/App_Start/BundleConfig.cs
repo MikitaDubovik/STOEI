@@ -25,7 +25,9 @@ namespace MvcPL
                 Include("~/Scripts/popover.js").
                 Include("~/Scripts/photoDetails.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/uploadImage").Include("~/Scripts/uploadImage.js"));
+            bundles.Add(new ScriptBundle("~/bundles/createAd").Include("~/Scripts/calculate.js"));
+
+           bundles.Add(new ScriptBundle("~/bundles/uploadImage").Include("~/Scripts/uploadImage.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/profile").Include("~/Scripts/profilePost.js"));
 

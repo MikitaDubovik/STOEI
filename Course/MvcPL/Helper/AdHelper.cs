@@ -35,8 +35,8 @@ namespace MvcPL.Helper
         {
             return new Dictionary<string, string>
             {
-                {"male", "1"},
-                {"female", "0"}
+                {"male", "male"},
+                {"female", "female"}
             };
         }
 
@@ -44,11 +44,11 @@ namespace MvcPL.Helper
         {
             return new Dictionary<string, string>
             {
-                {"English", "en"},
-                {"Belarusian", "by"},
-                {"Russian", "ru"},
-                {"Chinese", "ch"},
-                {"German", "ge"},
+                {"English", "English"},
+                {"Belarusian", "Belarusian"},
+                {"Russian", "Russian"},
+                {"Chinese", "Chinese"},
+                {"German", "German"},
             };
         }
 
