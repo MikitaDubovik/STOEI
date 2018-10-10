@@ -2,6 +2,9 @@
     text-decoration: none !important;
     color: black !important;
 }
+a {
+    color: white !important;
+}
 
 .logo {
     color: white;
@@ -89,18 +92,6 @@
     clear: both;
     text-align: center;
 }
-
-#buttonLoadMore {
-    /*color: #28a785;
-    border: 1px solid #28a785 !important;
-    background-color: transparent;
-    background-image: none;*/
-}
-
-    #buttonLoadMore:hover {
-        /*background-color: #28a785;
-    color: white;*/
-    }
 
 .green-button {
     color: #28a745;

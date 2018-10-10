@@ -85,32 +85,21 @@ namespace MvcPL.Controllers
         public ActionResult MakeAd(UploadAdViewModel post)
         {
             FeelViewBagWithAd();
-
+            PayModel.Model = post;
             return View("MakeAdFeatures", post);
-        }
-
-        public ActionResult Calculate(UploadAdViewModel post)
-        {
-            post.Countries = Request.Form["DdlCountries"];
-            post.Sex = Request.Form["DdlSex"];
-            post.Age = Request.Form["DdlAgeBegin"] + " " + Request.Form["DdlAgeEnd"];
-            post.Language = Request.Form["DdlLanguage"];
-
-            var price = PriceCounter.Calculate(post);
-            return PartialView(price);
         }
 
         [HttpPost]
         public ActionResult MakeAdFeatures(UploadAdViewModel post)
         {
-            post.Countries = Request.Form["DdlCountries"];
-            post.Sex = Request.Form["DdlSex"];
-            post.Age = Request.Form["DdlAgeBegin"] + " " + Request.Form["DdlAgeEnd"];
-            post.Language = Request.Form["DdlLanguage"];
+            return RedirectToAction("PayPage", "Profile");
+        }
 
-            var price = PriceCounter.Calculate(post);
-
-            return RedirectToAction("Index", "Profile");
+        [HttpPost]
+        public ActionResult PayPage(string price)
+        {
+            PayModel.Model.Price = price;
+            return View("PayPage", PayModel.Model);
         }
 
 

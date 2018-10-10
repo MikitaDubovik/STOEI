@@ -27,6 +27,6 @@ var ReadImage = function (file) {
             $("#imgPreview").show();
             $("#UploadButton").show();
             $("#ContinueButton").show();
-        }
-    }
-}
+        };
+    };
+};

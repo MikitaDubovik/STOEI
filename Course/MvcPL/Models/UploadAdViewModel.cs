@@ -14,5 +14,7 @@ namespace MvcPL.Models
         public string Sex { get; set; }
 
         public string Countries { get; set; }
+
+        public string Price { get; set; }
     }
 }
