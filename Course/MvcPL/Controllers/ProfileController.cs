@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using BLL.Interface.Services;
-using MvcPL.Helper;
+﻿using BLL.Interface.Services;
 using MvcPL.Infrastructure;
 using MvcPL.Models;
 using MvcPL.Models.Pagination;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace MvcPL.Controllers
 {
@@ -76,33 +75,6 @@ namespace MvcPL.Controllers
             return View("UploadPost");
         }
 
-        public ActionResult MakeAd()
-        {
-            return View("MakeAd");
-        }
-
-        [HttpPost]
-        public ActionResult MakeAd(UploadAdViewModel post)
-        {
-            FeelViewBagWithAd();
-            PayModel.Model = post;
-            return View("MakeAdFeatures", post);
-        }
-
-        [HttpPost]
-        public ActionResult MakeAdFeatures(UploadAdViewModel post)
-        {
-            return RedirectToAction("PayPage", "Profile");
-        }
-
-        [HttpPost]
-        public ActionResult PayPage(string price)
-        {
-            PayModel.Model.Price = price;
-            return View("PayPage", PayModel.Model);
-        }
-
-
         [HttpPost]
         public ActionResult UploadPost(UploadPostViewModel photo)
         {
@@ -123,32 +95,6 @@ namespace MvcPL.Controllers
             int userId = _accountService.GetUserByLogin(User.Identity.Name).Id;
             _accountService.EditeUserPtofile(userId, model.Name, model.ImageFile.ToByteArray());
             return RedirectToAction("Index", "Profile");
-        }
-
-        private void FeelViewBagWithAd()
-        {
-            var list = new SelectList(AdHelper.CountryList(), "Key", "Value");
-            List<SelectListItem> sortList = list.OrderBy(p => p.Text).ToList();
-            ViewBag.Countries = new MultiSelectList(sortList, "Value", "Text");
-
-            list = new SelectList(AdHelper.SexList(), "Value", "Key");
-            sortList = list.OrderBy(p => p.Text).ToList();
-            ViewBag.Sex = new MultiSelectList(sortList, "Value", "Text");
-
-            list = new SelectList(AdHelper.AgeListBegin(), "Value", "Key");
-            sortList = list.OrderBy(p => int.Parse(p.Text)).ToList();
-            sortList.Add(new SelectListItem{Text = "", Value = ""});
-            ViewBag.AgeBegin = new MultiSelectList(sortList, "Value", "Text");
-
-            list = new SelectList(AdHelper.AgeListEnd(), "Value", "Key");
-            sortList = list.OrderBy(p => p.Text).ToList();
-            sortList.Add(new SelectListItem { Text = "", Value = "" });
-            ViewBag.AgeEnd = new MultiSelectList(sortList, "Value", "Text");
-
-
-            list = new SelectList(AdHelper.LanguagesList(), "Value", "Key");
-            sortList = list.OrderBy(p => p.Text).ToList();
-            ViewBag.Languages = new MultiSelectList(sortList, "Value", "Text");
         }
     }
 }

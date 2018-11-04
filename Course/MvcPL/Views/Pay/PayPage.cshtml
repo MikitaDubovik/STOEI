@@ -1,0 +1,18 @@
+﻿@using System.Web.Optimization
+@model string
+@{
+    ViewBag.Title = "PayPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PayPage</h2>
+
+<div id="Container" class="container container-photo">
+    @using (Html.BeginForm("DoPay", "Pay", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group row justify-content-center">
+            <input type="button" class="btn signUpButton" id="PayButton" value="Pay"
+                   style="margin-top: 16px">
+        </div>
+    }
+</div>

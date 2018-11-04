@@ -40,7 +40,6 @@ namespace BLL
         }
         #endregion
 
-
         #region Post
         public static BllPost ToBllPost(this DalPost photo)
         {
@@ -125,5 +124,30 @@ namespace BLL
         }
         #endregion
 
+        #region Pay
+        public static BllPayment ToBllPayment(this DalPayment payment)
+        {
+            return new BllPayment
+            {
+                Age = payment.Age,
+                Countries = payment.Countries,
+                Language = payment.Language,
+                Price = payment.Price,
+                Sex = payment.Sex
+            };
+        }
+
+        public static DalPayment ToDalPayment(this BllPayment payment)
+        {
+            return new DalPayment
+            {
+                Age = payment.Age,
+                Countries = payment.Countries,
+                Language = payment.Language,
+                Price = payment.Price,
+                Sex = payment.Sex
+            };
+        }
+        #endregion
     }
 }

@@ -14,7 +14,7 @@
 {
     <div class="container container-photo">
 
-        @using (Html.BeginForm("MakeAd", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("MakeAd", "Pay", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="form-group row justify-content-center">
                 @Html.LabelFor(m => m.Name, new { @class = "col-form-label uploadLabel col-md-2" })

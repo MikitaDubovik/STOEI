@@ -123,6 +123,30 @@ namespace MvcPL.Infrastructure
             };
         }
 
+        public static UploadAdViewModel ToUploadAdViewModel(this BllPayment payment)
+        {
+            return new UploadAdViewModel
+            {
+                Age = payment.Age,
+                Countries = payment.Countries,
+                Language = payment.Language,
+                Price = payment.Price,
+                Sex = payment.Sex
+            };
+        }
+
+        public static BllPayment ToBllPayment(this UploadAdViewModel payment)
+        {
+            return new BllPayment
+            {
+                Age = payment.Age,
+                Countries = payment.Countries,
+                Language = payment.Language,
+                Price = payment.Price,
+                Sex = payment.Sex
+            };
+        }
+
         public static byte[] ToByteArray(this HttpPostedFileBase photo)
         {
             if (photo == null)

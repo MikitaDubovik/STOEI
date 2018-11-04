@@ -229,6 +229,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
@@ -294,9 +295,9 @@
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Views\Account\_SignUp.cshtml" />
-    <Content Include="Views\Profile\MakeAd.cshtml" />
-    <Content Include="Views\Profile\MakeAdFeatures.cshtml" />
-    <Content Include="Views\Profile\PayPage.cshtml" />
+    <Content Include="Views\Pay\MakeAd.cshtml" />
+    <Content Include="Views\Pay\MakeAdFeatures.cshtml" />
+    <Content Include="Views\Pay\PayPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

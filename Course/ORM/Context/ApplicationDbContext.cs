@@ -23,5 +23,11 @@ namespace ORM.Context
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserLikesEntity> UserLikes { get; set; }
+
+        public DbSet<Language> Languages { get; set; }
+
+        public DbSet<Sex> Sex { get; set; }
+
+        public DbSet<Age> Ages { get; set; }
     }
 }
