@@ -7,13 +7,13 @@ namespace ORM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class NThreeO : IMigrationMetadata
+    public sealed partial class MakeFKNotReq : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NThreeO));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MakeFKNotReq));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808262041356_NThreeO"; }
+            get { return "201811101112480_MakeFKNotReq"; }
         }
         
         string IMigrationMetadata.Source

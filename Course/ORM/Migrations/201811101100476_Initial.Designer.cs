@@ -7,13 +7,13 @@ namespace ORM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Addpayfields : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Addpayfields));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811041820117_Add pay fields"; }
+            get { return "201811101100476_Initial"; }
         }
         
         string IMigrationMetadata.Source

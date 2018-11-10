@@ -29,5 +29,7 @@ namespace ORM.Context
         public DbSet<Sex> Sex { get; set; }
 
         public DbSet<Age> Ages { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
     }
 }

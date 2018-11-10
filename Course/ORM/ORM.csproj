@@ -48,22 +48,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ApplicationDbContext.cs" />
-    <Compile Include="Entity\Age.cs" />
-    <Compile Include="Entity\Comment.cs" />
-    <Compile Include="Entity\Language.cs" />
-    <Compile Include="Entity\Post.cs" />
-    <Compile Include="Entity\Role.cs" />
-    <Compile Include="Entity\Sex.cs" />
-    <Compile Include="Entity\Tag.cs" />
-    <Compile Include="Entity\User.cs" />
-    <Compile Include="Entity\UserLikesEntity.cs" />
-    <Compile Include="Migrations\201808262041356_NThreeO.cs" />
-    <Compile Include="Migrations\201808262041356_NThreeO.Designer.cs">
-      <DependentUpon>201808262041356_NThreeO.cs</DependentUpon>
+    <Compile Include="Entity\Ad\Age.cs" />
+    <Compile Include="Entity\Post\Comment.cs" />
+    <Compile Include="Entity\Ad\Country.cs" />
+    <Compile Include="Entity\Ad\Language.cs" />
+    <Compile Include="Entity\Post\Post.cs" />
+    <Compile Include="Entity\User\Role.cs" />
+    <Compile Include="Entity\Ad\Sex.cs" />
+    <Compile Include="Entity\Post\Tag.cs" />
+    <Compile Include="Entity\User\User.cs" />
+    <Compile Include="Entity\Post\UserLikesEntity.cs" />
+    <Compile Include="Migrations\201811101100476_Initial.cs" />
+    <Compile Include="Migrations\201811101100476_Initial.Designer.cs">
+      <DependentUpon>201811101100476_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811041820117_Add pay fields.cs" />
-    <Compile Include="Migrations\201811041820117_Add pay fields.Designer.cs">
-      <DependentUpon>201811041820117_Add pay fields.cs</DependentUpon>
+    <Compile Include="Migrations\201811101112480_MakeFKNotReq.cs" />
+    <Compile Include="Migrations\201811101112480_MakeFKNotReq.Designer.cs">
+      <DependentUpon>201811101112480_MakeFKNotReq.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,11 +74,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808262041356_NThreeO.resx">
-      <DependentUpon>201808262041356_NThreeO.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811101100476_Initial.resx">
+      <DependentUpon>201811101100476_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811041820117_Add pay fields.resx">
-      <DependentUpon>201811041820117_Add pay fields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811101112480_MakeFKNotReq.resx">
+      <DependentUpon>201811101112480_MakeFKNotReq.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

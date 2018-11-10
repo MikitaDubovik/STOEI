@@ -9,6 +9,7 @@ namespace DAL
     public class PayRepository : IPayRepository
     {
         private readonly ApplicationDbContext _context;
+
         public List<DalPayment> Get()
         {
             throw new NotImplementedException();

@@ -22,7 +22,7 @@ namespace ORM.Entity
 
         [Required]
         public int UserId { get; set; }
-        
+
         [ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
 
@@ -32,5 +32,27 @@ namespace ORM.Entity
 
         [Required]
         public byte[] Image { get; set; }
+
+        public bool IsAd { get; set; }
+
+        public int? AgeId { get; set; }
+
+        [ForeignKey(nameof(AgeId))]
+        public virtual Age Age { get; set; }
+
+        public int? CountryId { get; set; }
+
+        [ForeignKey(nameof(CountryId))]
+        public virtual Country Country { get; set; }
+
+        public int? LanguageId { get; set; }
+
+        [ForeignKey(nameof(LanguageId))]
+        public virtual Language Language { get; set; }
+
+        public int? SexId { get; set; }
+
+        [ForeignKey(nameof(SexId))]
+        public virtual Sex Sex { get; set; }
     }
 }

@@ -385,3 +385,7 @@ a {
 .activeLink {
     background-color: #28a745;
 }
+
+select {
+    overflow-y: hidden !important;
+}

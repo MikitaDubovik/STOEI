@@ -1,12 +1,11 @@
 ﻿$('#CalculateButton').bind("click", function () {
-    document.getElementById("CalculateButton").style.visibility = "hidden";
 
     var countries = $("#DdlCountries").val();
 
     var sex = $("#DdlSex").val();
 
-    var ageBegin = parseInt($("#DdlAgeBegin").val());
-    var ageEnd = parseInt($("#DdlAgeEnd").val());
+    var age = parseInt($("#DdlAge").val());
+
     var languages = $("#DdlLanguage").val();
 
     var totalPrice = 0;
@@ -14,19 +13,19 @@
     if (countries.length !== 0)
         totalPrice += countries.length * 30;
     else
-        totalPrice += 1000;
+        totalPrice += 120;
 
     if (sex.length !== 0)
         totalPrice += sex.length * 30;
     else
-        totalPrice += 60;
+        totalPrice += 90;
 
     if (languages.length !== 0)
         totalPrice += languages.length * 30;
     else
         totalPrice += 150;
 
-    totalPrice += (ageEnd - ageBegin) * 30;
+    totalPrice +=  age * 30;
 
     $("#endPrice").text(totalPrice);
 
