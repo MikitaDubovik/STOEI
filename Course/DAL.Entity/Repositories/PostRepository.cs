@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DAL.Interface.DTO;
+﻿using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 using ORM.Context;
 using ORM.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DAL
 {
@@ -18,40 +18,40 @@ namespace DAL
 
         public DalPost GetById(int key)
         {
-            return _context.Posts.Find(key).ToDalPost();
+            return Mapper.CreateMap().Map<DalPost>(_context.Posts.Find(key));
         }
 
         public void Insert(DalPost entity)
         {
-            _context.Posts.Add(entity.ToOrmPost());
+            _context.Posts.Add(Mapper.CreateMap().Map<Post>(entity));
             _context.SaveChanges();
         }
 
         public void Delete(DalPost entity)
         {
-            var temp = _context.Posts.Find(entity.Id);
+            var temp = _context.Posts.Find(entity.PostId);
             _context.Posts.Remove(temp);
             _context.SaveChanges();
         }
 
         public void Update(DalPost entity)
         {
-            var temp = _context.Posts.Find(entity.Id);
-            temp = entity.ToOrmPost();
+            var temp = _context.Posts.Find(entity.PostId);
+            temp = Mapper.CreateMap().Map<Post>(entity);
             _context.SaveChanges();
         }
 
         public IEnumerable<DalPost> GetAll(int skip = 0, int take = 10)
         {
             return _context.Posts.OrderByDescending(p => p.UploadDate).Skip(skip).Take(take).AsEnumerable()
-                            .Select(p => p.ToDalPost());
+                            .Select(p => Mapper.CreateMap().Map<DalPost>(p));
         }
 
         public IEnumerable<DalPost> GetByTag(string tag, int skip = 0, int take = 10)
         {
             return _context.Posts.OrderByDescending(p => p.UploadDate).AsEnumerable().
-                Select(p => p.ToDalPost()).
-                Where(p => p.Tags.Contains(tag)).
+                Select(p => Mapper.CreateMap().Map<DalPost>(p)).
+                Where(p => p.Tags.Contains(new DalTag { Text = tag })).
                 Skip(skip).Take(take);
         }
 
@@ -73,7 +73,7 @@ namespace DAL
         public IEnumerable<DalPost> GetByUserId(int userId, int skip = 0, int take = 10)
         {
             return _context.Posts.OrderByDescending(p => p.UploadDate).Where(p => p.UserId == userId).Skip(skip).
-                Take(take).AsEnumerable().Select(c => c.ToDalPost());
+                Take(take).AsEnumerable().Select(p => Mapper.CreateMap().Map<DalPost>(p));
         }
 
         public void LikePost(int postId, int userId)

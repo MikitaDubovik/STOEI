@@ -33,7 +33,7 @@ namespace MvcPL.Controllers
             };
 
             IEnumerable<int> photosIds = _postService.GetAll(0, pageInfo.PageSize)
-                .Select(p => p.Id);
+                .Select(p => p.PostId);
 
             var photos = new List<ImageViewModel>(photosIds.Count());
             photos.AddRange(photosIds.Select(id => new ImageViewModel
@@ -73,7 +73,7 @@ namespace MvcPL.Controllers
             };
 
             var photosIds = _postService.GetByTag(tag, pageInfo.Skip, pageInfo.PageSize)
-                .Select(p => p.Id);
+                .Select(p => p.PostId);
             var photos = new List<ImageViewModel>(photosIds.Count());
             photos.AddRange(photosIds.Select(id => new ImageViewModel
             {
@@ -99,7 +99,7 @@ namespace MvcPL.Controllers
             };
 
             var photosIds = _postService.GetByTag(tag, pageInfo.Skip, pageInfo.PageSize)
-                .Select(p => p.Id);
+                .Select(p => p.PostId);
 
             var photos = new List<ImageViewModel>(photosIds.Count());
             photos.AddRange(photosIds.Select(id => new ImageViewModel
@@ -137,7 +137,7 @@ namespace MvcPL.Controllers
             photo.Owner = _accountService.GetUserById(photo.UserId).ToPostOwnerViewModel();
             if (Request.IsAuthenticated)
             {
-                photo.CurrentUserId = _accountService.GetUserByLogin(User.Identity.Name).Id;
+                photo.CurrentUserId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
             }
 
             var pageInfo = new PageInfo
@@ -170,7 +170,7 @@ namespace MvcPL.Controllers
         [Authorize]
         public ActionResult LikePost(int postId)
         {
-            int userId = _accountService.GetUserByLogin(User.Identity.Name).Id;
+            int userId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
             _postService.LikePost(userId, postId);
             PostRatingViewModel photo = _postService.GetById(postId).ToPostRatingViewModel();
             return PartialView("_LikePhoto", photo);
@@ -179,7 +179,7 @@ namespace MvcPL.Controllers
         [Authorize]
         public ActionResult DislikePost(int postId)
         {
-            int userId = _accountService.GetUserByLogin(User.Identity.Name).Id;
+            int userId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
             _postService.DislikePost(userId, postId);
             PostRatingViewModel photo = _postService.GetById(postId).ToPostRatingViewModel();
             return PartialView("_DislikePhoto", photo);
@@ -189,7 +189,7 @@ namespace MvcPL.Controllers
         [HttpPost]
         public ActionResult AddComment(AddCommentViewModel model)
         {
-            int userId = _accountService.GetUserByLogin(User.Identity.Name).Id;
+            int userId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
             _postService.AddComment(model.ToBllComment(userId, User.Identity.Name));
             return RedirectToAction("LoadMoreComment", new { page = 0, id = model.PostId });
         }

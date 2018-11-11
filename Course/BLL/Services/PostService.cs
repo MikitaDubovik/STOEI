@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BLL.Interface.Entities;
+﻿using BLL.Interface.Entities;
 using BLL.Interface.Services;
-using DAL.Interface.DTO;
 using DAL.Interface.Repository;
+using System.Collections.Generic;
+using System.Linq;
+using DAL.Interface.DTO;
 
 namespace BLL.Services
 {
@@ -22,17 +22,17 @@ namespace BLL.Services
 
         public BllUser GetAuthorById(int id)
         {
-            return _userRepository.GetById(id).ToBllUser();
+            return Mapper.CreateMap().Map<BllUser>(_userRepository.GetById(id));
         }
 
         public IEnumerable<BllPost> GetAll(int skip, int take)
         {
-            return _postRepository.GetAll(skip, take).Select(p => p.ToBllPost());
+            return _postRepository.GetAll(skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));
         }
 
         public void Add(BllPost photo)
         {
-            _postRepository.Insert(photo.ToDalPost());
+            _postRepository.Insert(Mapper.CreateMap().Map<DalPost>(photo));
         }
 
         public IEnumerable<string> FindTags(string tag)
@@ -51,20 +51,21 @@ namespace BLL.Services
         {
             if (tag == string.Empty)
             {
-                return _postRepository.GetAll(skip, take).Select(p => p.ToBllPost());
+                return _postRepository.GetAll(skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));
             }
 
-            return _postRepository.GetByTag(tag, skip, take).Select(p => p.ToBllPost());
+            return _postRepository.GetByTag(tag, skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));
         }
 
         public BllPost GetById(int id)
         {
-            return _postRepository.GetById(id).ToBllPost();
+            var t = _postRepository.GetById(id);
+            return Mapper.CreateMap().Map<BllPost>(_postRepository.GetById(id));
         }
 
         public IEnumerable<BllPost> GetByUserId(int userId, int skip, int take)
         {
-            return _postRepository.GetByUserId(userId, skip, take).Select(p => p.ToBllPost());
+            return _postRepository.GetByUserId(userId, skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));
         }
 
         public int CountByUserId(int id)
@@ -84,7 +85,7 @@ namespace BLL.Services
 
         public void AddComment(BllComment comment)
         {
-           _commentRepository.Insert(comment.ToDalComment());
+            _commentRepository.Insert(Mapper.CreateMap().Map<DalComment>(comment));
         }
 
         public int CountCommentByPostId(int postId)
@@ -94,7 +95,7 @@ namespace BLL.Services
 
         public IEnumerable<BllComment> GetCommentsByPostId(int postId, int skip, int take)
         {
-            return _commentRepository.GetByPostId(postId, skip, take).Select(p => p.ToBllComment());
+            return _commentRepository.GetByPostId(postId, skip, take).Select(p => Mapper.CreateMap().Map<BllComment>(p));
         }
 
         public void Delete(int postId)

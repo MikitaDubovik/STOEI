@@ -11,14 +11,14 @@ namespace Test
 
             DalUser user = new DalUser
             {
-                Id = 1,
+                UserId = 1,
                 Email = "123@123.by",
                 Login = "log",
                 Name = "name",
                 Password = "password",
                 Phone = "33-333-333",
                 ProfilePhoto = new byte[256],
-                Roles = "User"
+                Roles = "UserId"
             };
 
             tt.Insert(user);

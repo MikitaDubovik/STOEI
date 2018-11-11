@@ -8,121 +8,121 @@ namespace BLL
     public static class BllEntityMapper
     {
 
-        #region User
-        public static DalUser ToDalUser(this BllUser user)
-        {
-            return new DalUser
-            {
-                Id = user.Id,
-                Email = user.Email,
-                Login = user.Login,
-                Name = user.Name,
-                Password = user.Password,
-                Phone = user.Phone,
-                ProfilePhoto = user.ProfilePhoto,
-                Roles = user.Roles
-            };
-        }
+        //#region UserId
+        //public static DalUser ToDalUser(this BllUser user)
+        //{
+        //    return new DalUser
+        //    {
+        //        PostId = user.PostId,
+        //        Email = user.Email,
+        //        Login = user.Login,
+        //        Name = user.Name,
+        //        Password = user.Password,
+        //        Phone = user.Phone,
+        //        ProfilePhoto = user.ProfilePhoto,
+        //        Roles = user.Roles
+        //    };
+        //}
 
-        public static BllUser ToBllUser(this DalUser user)
-        {
-            return new BllUser
-            {
-                Id = user.Id,
-                Email = user.Email,
-                Login = user.Login,
-                Name = user.Name,
-                Password = user.Password,
-                Phone = user.Phone,
-                ProfilePhoto = user.ProfilePhoto,
-                Roles = user.Roles
-            };
-        }
-        #endregion
+        //public static BllUser ToBllUser(this DalUser user)
+        //{
+        //    return new BllUser
+        //    {
+        //        PostId = user.PostId,
+        //        Email = user.Email,
+        //        Login = user.Login,
+        //        Name = user.Name,
+        //        Password = user.Password,
+        //        Phone = user.Phone,
+        //        ProfilePhoto = user.ProfilePhoto,
+        //        Roles = user.Roles
+        //    };
+        //}
+        //#endregion
 
-        #region Post
-        public static BllPost ToBllPost(this DalPost photo)
-        {
-            return new BllPost
-            {
-                Id = photo.Id,
-                Name = photo.Name,
-                Description = photo.Description,
-                Image = photo.Image,
-                NumberOfLikes = photo.NumberOfLikes,
-                Tags = photo.Tags,
-                UploadDate = photo.UploadDate,
-                User = photo.User.ToBllUser(),
-                UserLikes = ToBllUserLikes(photo.UserLikes)
-            };
-        }
+        //#region Post
+        //public static BllPost ToBllPost(this DalPost photo)
+        //{
+        //    return new BllPost
+        //    {
+        //        PostId = photo.PostId,
+        //        Name = photo.Name,
+        //        Description = photo.Description,
+        //        Image = photo.Image,
+        //        NumberOfLikes = photo.NumberOfLikes,
+        //        Tags = photo.Tags,
+        //        UploadDate = photo.UploadDate,
+        //        UserId = photo.UserId.ToBllUser(),
+        //        UserLikes = ToBllUserLikes(photo.UserLikes)
+        //    };
+        //}
 
-        public static DalPost ToDalPost(this BllPost photo)
-        {
-            return new DalPost
-            {
-                Id = photo.Id,
-                Name = photo.Name,
-                Description = photo.Description,
-                Image = photo.Image,
-                NumberOfLikes = photo.NumberOfLikes,
-                Tags = photo.Tags,
-                UploadDate = photo.UploadDate,
-                User = photo.User.ToDalUser(),
-                UserLikes = ToDalUserLikes(photo.UserLikes)
-            };
-        }
-        #endregion
+        //public static DalPost ToDalPost(this BllPost photo)
+        //{
+        //    return new DalPost
+        //    {
+        //        PostId = photo.PostId,
+        //        Name = photo.Name,
+        //        Description = photo.Description,
+        //        Image = photo.Image,
+        //        NumberOfLikes = photo.NumberOfLikes,
+        //        Tags = photo.Tags,
+        //        UploadDate = photo.UploadDate,
+        //        UserId = photo.UserId.ToDalUser(),
+        //        UserLikes = ToDalUserLikes(photo.UserLikes)
+        //    };
+        //}
+        //#endregion
 
-        #region UserLikes
+        //#region UserLikes
 
-        public static IEnumerable<DalUserLikes> ToDalUserLikes(IEnumerable<BllUserLikes> bllUserLikes)
-        {
-            return bllUserLikes.Select(b => new DalUserLikes
-            {
-                UserLikesEntityId = b.UserLikesEntityId,
-                UserLikesId = b.UserLikesId,
-                UserName = b.UserName
-            }).ToList();
-        }
+        //public static IEnumerable<DalUserLikes> ToDalUserLikes(IEnumerable<BllUserLikes> bllUserLikes)
+        //{
+        //    return bllUserLikes.Select(b => new DalUserLikes
+        //    {
+        //        UserLikesEntityId = b.UserLikesEntityId,
+        //        UserLikesId = b.UserLikesId,
+        //        UserName = b.UserName
+        //    }).ToList();
+        //}
 
-        public static IEnumerable<BllUserLikes> ToBllUserLikes(IEnumerable<DalUserLikes> dalUserLikes)
-        {
-            return dalUserLikes.Select(b => new BllUserLikes
-            {
-                UserLikesEntityId = b.UserLikesEntityId,
-                UserLikesId = b.UserLikesId,
-                UserName = b.UserName
-            }).ToList();
-        }
+        //public static IEnumerable<BllUserLikes> ToBllUserLikes(IEnumerable<DalUserLikes> dalUserLikes)
+        //{
+        //    return dalUserLikes.Select(b => new BllUserLikes
+        //    {
+        //        UserLikesEntityId = b.UserLikesEntityId,
+        //        UserLikesId = b.UserLikesId,
+        //        UserName = b.UserName
+        //    }).ToList();
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Comment
-        public static DalComment ToDalComment(this BllComment comment)
-        {
-            return new DalComment
-            {
-                Id = comment.Id,
-                User = comment.User.ToDalUser(),
-                PostId = comment.PostId,
-                Posted = comment.Posted,
-                Text = comment.Text
-            };
-        }
+        //#region Comment
+        //public static DalComment ToDalComment(this BllComment comment)
+        //{
+        //    return new DalComment
+        //    {
+        //        PostId = comment.PostId,
+        //        UserId = comment.UserId.ToDalUser(),
+        //        PostId = comment.PostId,
+        //        Posted = comment.Posted,
+        //        Text = comment.Text
+        //    };
+        //}
 
-        public static BllComment ToBllComment(this DalComment comment)
-        {
-            return new BllComment
-            {
-                Id = comment.Id,
-                User = comment.User.ToBllUser(),
-                PostId = comment.PostId,
-                Posted = comment.Posted,
-                Text = comment.Text
-            };
-        }
-        #endregion
+        //public static BllComment ToBllComment(this DalComment comment)
+        //{
+        //    return new BllComment
+        //    {
+        //        PostId = comment.PostId,
+        //        UserId = comment.UserId.ToBllUser(),
+        //        PostId = comment.PostId,
+        //        Posted = comment.Posted,
+        //        Text = comment.Text
+        //    };
+        //}
+        //#endregion
 
         #region Pay
         public static BllPayment ToBllPayment(this DalPayment payment)

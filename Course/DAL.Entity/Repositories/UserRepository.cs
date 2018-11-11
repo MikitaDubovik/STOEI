@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 using ORM.Context;
+using ORM.Entity;
 
 namespace DAL
 {
@@ -17,12 +17,14 @@ namespace DAL
 
         public DalUser GetById(int key)
         {
-            return _context.Users.FirstOrDefault(u => u.UserId == key).ToDalUser();
+            var t = _context.Users.FirstOrDefault(u => u.UserId == key);
+            var tt = Mapper.CreateMap().Map<DalUser>(_context.Users.FirstOrDefault(u => u.UserId == key));
+            return Mapper.CreateMap().Map<DalUser>(_context.Users.FirstOrDefault(u => u.UserId == key));
         }
 
         public void Insert(DalUser entity)
         {
-            var tempEntity = entity.ToOrmUser();
+            var tempEntity = Mapper.CreateMap().Map<User>(entity);
             var temp = _context.Roles.FirstOrDefault(r => r.Name.Equals(tempEntity.Roles.Name));
             tempEntity.Roles = temp;
             _context.Users.Add(tempEntity);
@@ -32,14 +34,14 @@ namespace DAL
 
         public void Delete(DalUser entity)
         {
-            _context.Users.Remove(entity.ToOrmUser());
+            _context.Users.Remove(Mapper.CreateMap().Map<User>(entity));
             _context.SaveChanges();
         }
 
         public void Update(DalUser entity)
         {
-            var temp = _context.Users.Find(entity.Id);
-            temp = entity.ToOrmUser();
+            var temp = _context.Users.Find(entity.UserId);
+            temp = Mapper.CreateMap().Map<User>(entity);
             _context.SaveChanges();
         }
 
@@ -52,7 +54,7 @@ namespace DAL
 
         public DalUser GetUserByLogin(string login)
         {
-            return _context.Users.FirstOrDefault(u => u.Login == login).ToDalUser();
+            return Mapper.CreateMap().Map<DalUser>(_context.Users.FirstOrDefault(u => u.Login == login));
         }
 
         public bool CheckIfUserExists(string login)

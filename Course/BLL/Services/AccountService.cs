@@ -1,5 +1,6 @@
 ﻿using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 
 namespace BLL.Services
@@ -15,12 +16,12 @@ namespace BLL.Services
 
         public BllUser GetUserByLogin(string login)
         {
-            return userRepository.GetUserByLogin(login).ToBllUser();
+            return Mapper.CreateMap().Map<BllUser>(userRepository.GetUserByLogin(login));
         }
 
         public BllUser GetUserById(int id)
         {
-            return userRepository.GetById(id).ToBllUser();
+            return Mapper.CreateMap().Map<BllUser>(userRepository.GetById(id));
         }
 
         public bool CheckIfUserExists(string login)
@@ -30,7 +31,7 @@ namespace BLL.Services
 
         public void CreateUser(BllUser user)
         {
-            userRepository.Insert(user.ToDalUser());
+            userRepository.Insert(Mapper.CreateMap().Map<DalUser>(user));
         }
 
         public void EditeUserPtofile(int userId, string newName, byte[] newProfile)

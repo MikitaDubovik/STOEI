@@ -14,7 +14,7 @@ namespace MvcPL.Infrastructure
         {
             return new PostViewModel
             {
-                Id = photo.Id,
+                Id = photo.PostId,
                 Image = photo.Image
             };
         }
@@ -23,14 +23,14 @@ namespace MvcPL.Infrastructure
         {
             return new PostDetailsViewModel
             {
-                Id = photo.Id,
+                Id = photo.PostId,
                 Name = photo.Name,
                 Description = photo.Description,
                 Image = photo.Image,
                 NumberOfLikes = photo.NumberOfLikes,
-                Tags = photo.Tags,
+                Tags = photo.Tags.Select(t=>t.Text),
                 UploadDate = photo.UploadDate.ToLocalTime(),
-                UserId = photo.User.Id,
+                UserId = photo.User.UserId,
                 UserLikesIds = photo.UserLikes.Select(ul=> ul.UserLikesId)
             };
         }
@@ -48,7 +48,7 @@ namespace MvcPL.Infrastructure
         {
             return new PostRatingViewModel
             {
-                Id = photo.Id,
+                Id = photo.PostId,
                 NumberOfLikes = photo.NumberOfLikes
             };
         }
@@ -85,7 +85,7 @@ namespace MvcPL.Infrastructure
                 Tags = ToTags(photo.Tags),
                 UploadDate = DateTime.Now,
                 UserLikes = new List<BllUserLikes>(),
-                User = new BllUser {Id = userId}
+                User = new BllUser {UserId = userId}
             };
         }
 
@@ -98,7 +98,7 @@ namespace MvcPL.Infrastructure
                 Text = model.Text,
                 User = new BllUser
                 {
-                    Id = userId,
+                    UserId = userId,
                     Name = userName
                 }
             };
@@ -108,7 +108,7 @@ namespace MvcPL.Infrastructure
         {
             return new Author
             {
-                Id = author.Id,
+                Id = author.UserId,
                 Name = author.Name
             };
         }
@@ -117,7 +117,7 @@ namespace MvcPL.Infrastructure
         {
             return new CommentViewModel
             {
-                Id = comment.Id,
+                Id = comment.CommentId,
                 Text = comment.Text,
                 Author = comment.User.ToAuthor()
             };
@@ -161,12 +161,12 @@ namespace MvcPL.Infrastructure
             return thePictureAsBytes;
         }
 
-        private static IEnumerable<string> ToTags(string tags)
+        private static IEnumerable<BllTag> ToTags(string tags)
         {
             if (string.IsNullOrEmpty(tags))
-                return new string[0];
+                return new List<BllTag>();
             string[] splitedTags = tags.Split(' ');
-            return splitedTags.Where(s => s.StartsWith("#"));
+            return splitedTags.Where(s => s.StartsWith("#")).Select(t => new BllTag { Text = t });
         }
     }
 }

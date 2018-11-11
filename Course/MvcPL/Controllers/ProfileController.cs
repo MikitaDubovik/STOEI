@@ -26,7 +26,7 @@ namespace MvcPL.Controllers
             ProfileViewModel profileViewModel = _accountService.
                 GetUserByLogin(User.Identity.Name).ToProfileViewModel();
 
-            int userId = _accountService.GetUserByLogin(User.Identity.Name).Id;
+            int userId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
 
             PageInfo pageInfo = new PageInfo
             {
@@ -43,7 +43,7 @@ namespace MvcPL.Controllers
 
         public ActionResult LoadMorePosts(int page)
         {
-            int userId = _accountService.GetUserByLogin(User.Identity.Name).Id;
+            int userId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
 
             PageInfo pageInfo = new PageInfo
             {
@@ -78,7 +78,7 @@ namespace MvcPL.Controllers
         [HttpPost]
         public ActionResult UploadPost(UploadPostViewModel photo)
         {
-            _postService.Add(photo.ToBllPost(_accountService.GetUserByLogin(User.Identity.Name).Id));
+            _postService.Add(photo.ToBllPost(_accountService.GetUserByLogin(User.Identity.Name).UserId));
             return RedirectToAction("Index", "Profile");
         }
 
@@ -92,7 +92,7 @@ namespace MvcPL.Controllers
         [HttpPost]
         public ActionResult EditPtofile(EditProfileViewModel model)
         {
-            int userId = _accountService.GetUserByLogin(User.Identity.Name).Id;
+            int userId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
             _accountService.EditeUserPtofile(userId, model.Name, model.ImageFile.ToByteArray());
             return RedirectToAction("Index", "Profile");
         }

@@ -10,5 +10,13 @@ namespace DAL.Interface.Repository
         DalPayment Get(int id);
 
         void Pay(DalPayment payment);
+
+        List<DalSex> GetSex();
+
+        List<DalAge> GetAge();
+
+        List<DalCountry> GetCountries();
+
+        List<DalLanguage> GetLanguages();
     }
 }

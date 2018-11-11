@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace DAL.Interface.DTO
+namespace BLL.Interface.Entities
 {
-    public class DalComment
+    public class BllComment
     {
-        public int Id { get; set; }
+        public int CommentId { get; set; }
         public int PostId { get; set; }
         public DateTime Posted { get; set; }
         public string Text { get; set; }
-        public DalUser User { get; set; }
+        public BllUser User { get; set; }
     }
 }

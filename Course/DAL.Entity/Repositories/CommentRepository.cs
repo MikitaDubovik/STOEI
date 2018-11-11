@@ -3,6 +3,7 @@ using System.Linq;
 using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 using ORM.Context;
+using ORM.Entity;
 
 namespace DAL
 {
@@ -17,33 +18,33 @@ namespace DAL
 
         public DalComment GetById(int key)
         {
-            return _context.Comments.Find(key).ToDalComment();
+            return Mapper.CreateMap().Map<DalComment>(_context.Comments.Find(key));
         }
 
         public void Insert(DalComment entity)
         {
-            _context.Comments.Add(entity.ToOrmComment());
+            _context.Comments.Add(Mapper.CreateMap().Map<Comment>(entity));
             _context.SaveChanges();
         }
 
         public void Delete(DalComment entity)
         {
-            var temp = _context.Comments.Find(entity.Id);
+            var temp = _context.Comments.Find(entity.CommentId);
             _context.Comments.Remove(temp);
             _context.SaveChanges();
         }
 
         public void Update(DalComment entity)
         {
-            var temp = _context.Comments.Find(entity.Id);
-            temp = entity.ToOrmComment();
+            var temp = _context.Comments.Find(entity.CommentId);
+            temp = Mapper.CreateMap().Map<Comment>(entity);
             _context.SaveChanges();
         }
 
         public IEnumerable<DalComment> GetByPostId(int postId, int skip = 0, int take = 10)
         {
             return _context.Comments.OrderByDescending(p => p.Posted).Where(p => p.PostId == postId).Skip(skip).
-                Take(take).AsEnumerable().Select(c => c.ToDalComment());
+                Take(take).AsEnumerable().Select(c => Mapper.CreateMap().Map<DalComment>(c));
         }
 
         public void DeleteAllCommentsToPost(int postId)

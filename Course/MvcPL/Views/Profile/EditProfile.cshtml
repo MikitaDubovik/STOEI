@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <div class="labelCurrentPost">Current</div>
 
-                @if (Model.ProfilePost == null)
+                @if (Model.ProfilePost == null || Model.ProfilePost.Length == 0)
                 {
                     <div class="currentPost">
                         <img src="~/Content/default_photo.jpg" height="200px" width="auto" style="border-radius:10px">

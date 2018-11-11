@@ -10,7 +10,7 @@
     </div>
     <div class="infoDetails">
         <div class="ownerDetails">
-            @if (Model.Owner.ProfilePostOwner != null)
+            @if (Model.Owner.ProfilePostOwner != null || Model.Owner.ProfilePostOwner?.Length != 0)
             {
                 <img src="@Url.Action("ShowProfilePost", "Profile", new {Model.UserId})" height="50px" width="auto" style="border-radius: 50%">
             }

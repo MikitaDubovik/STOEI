@@ -36,11 +36,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\DalComment.cs" />
-    <Compile Include="DTO\DalPayment.cs" />
-    <Compile Include="DTO\DalPost.cs" />
-    <Compile Include="DTO\DalUser.cs" />
-    <Compile Include="DTO\DalUserLikes.cs" />
+    <Compile Include="DTO\Ad\DalAdInformation.cs" />
+    <Compile Include="DTO\Ad\DalAge.cs" />
+    <Compile Include="DTO\Ad\DalCountry.cs" />
+    <Compile Include="DTO\Ad\DalLanguage.cs" />
+    <Compile Include="DTO\Post\DalTag.cs" />
+    <Compile Include="DTO\Post\DalComment.cs" />
+    <Compile Include="DTO\Ad\DalPayment.cs" />
+    <Compile Include="DTO\Post\DalPost.cs" />
+    <Compile Include="DTO\Ad\DalSex.cs" />
+    <Compile Include="DTO\User\DalUser.cs" />
+    <Compile Include="DTO\Post\DalUserLikes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ICommentRepository.cs" />
     <Compile Include="Repository\IPayRepository.cs" />

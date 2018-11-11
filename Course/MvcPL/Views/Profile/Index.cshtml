@@ -20,7 +20,7 @@
 {
     <div class="container container-profile">
         <div class="profilePhoto col-lg-4 col-md-4">
-            @if (Model.ProfilePost == null)
+            @if (Model.ProfilePost == null || Model.ProfilePost.Length == 0)
             {
                 <img src="~/Content/default_photo.jpg" height="200px" width="auto" style="border-radius:10px">
             }
