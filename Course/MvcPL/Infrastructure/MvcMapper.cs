@@ -31,7 +31,7 @@ namespace MvcPL.Infrastructure
                 Tags = photo.Tags.Select(t=>t.Text),
                 UploadDate = photo.UploadDate.ToLocalTime(),
                 UserId = photo.User.UserId,
-                UserLikesIds = photo.UserLikes.Select(ul=> ul.UserLikesId)
+                UserLikesIds = photo.UserLikesEntity.Select(ul=> ul.UserLikesId)
             };
         }
 
@@ -84,7 +84,7 @@ namespace MvcPL.Infrastructure
                 Description = photo.Description,
                 Tags = ToTags(photo.Tags),
                 UploadDate = DateTime.Now,
-                UserLikes = new List<BllUserLikes>(),
+                UserLikesEntity = new List<BllUserLikesEntity>(),
                 User = new BllUser {UserId = userId}
             };
         }

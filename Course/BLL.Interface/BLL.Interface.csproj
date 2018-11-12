@@ -44,7 +44,7 @@
     <Compile Include="Entities\Ad\BllPayment.cs" />
     <Compile Include="Entities\Post\BllPost.cs" />
     <Compile Include="Entities\User\BllUser.cs" />
-    <Compile Include="Entities\Post\BllUserLikes.cs" />
+    <Compile Include="Entities\Post\BllUserLikesEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Services\IPayService.cs" />

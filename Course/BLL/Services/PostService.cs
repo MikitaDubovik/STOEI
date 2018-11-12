@@ -59,7 +59,6 @@ namespace BLL.Services
 
         public BllPost GetById(int id)
         {
-            var t = _postRepository.GetById(id);
             return Mapper.CreateMap().Map<BllPost>(_postRepository.GetById(id));
         }
 

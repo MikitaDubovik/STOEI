@@ -19,7 +19,7 @@ namespace DAL.Interface.DTO
 
         public IEnumerable<DalTag> Tags { get; set; }
 
-        public IEnumerable<DalUserLikes> UserLikes { get; set; }
+        public IEnumerable<DalUserLikesEntity> UserLikesEntity { get; set; }
 
         public byte[] Image { get; set; }
     }

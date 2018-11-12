@@ -19,7 +19,7 @@ namespace BLL.Interface.Entities
 
         public IEnumerable<BllTag> Tags { get; set; }
 
-        public IEnumerable<BllUserLikes> UserLikes { get; set; }
+        public IEnumerable<BllUserLikesEntity> UserLikesEntity { get; set; }
 
         public byte[] Image { get; set; }
     }

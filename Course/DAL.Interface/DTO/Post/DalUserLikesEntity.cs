@@ -1,11 +1,9 @@
-﻿namespace BLL.Interface.Entities
+﻿namespace DAL.Interface.DTO
 {
-    public class BllUserLikes
+    public class DalUserLikesEntity
     {
         public int UserLikesEntityId { get; set; }
 
         public int UserLikesId { get; set; }
-
-        public string UserName { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace DAL.Interface.DTO
+﻿namespace BLL.Interface.Entities
 {
-    public class DalUserLikes
+    public class BllUserLikesEntity
     {
         public int UserLikesEntityId { get; set; }
 

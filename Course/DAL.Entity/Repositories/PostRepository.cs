@@ -1,9 +1,9 @@
-﻿using DAL.Interface.DTO;
+﻿using System.Collections.Generic;
+using System.Linq;
+using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 using ORM.Context;
 using ORM.Entity;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace DAL
 {
@@ -51,13 +51,14 @@ namespace DAL
         {
             return _context.Posts.OrderByDescending(p => p.UploadDate).AsEnumerable().
                 Select(p => Mapper.CreateMap().Map<DalPost>(p)).
-                Where(p => p.Tags.Contains(new DalTag { Text = tag })).
+                Where(p => p.Tags.Any(t => t.Text.Contains(tag))).
                 Skip(skip).Take(take);
         }
 
         public int CountByTag(string tag)
         {
-            return _context.Tags.Count(t => t.Text.Contains(tag));
+            var q = _context.Tags.Count(t => t.Text.Contains(tag));
+            return q;
         }
 
         public int CountByUserId(int userId)

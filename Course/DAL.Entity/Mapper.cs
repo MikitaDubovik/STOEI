@@ -20,7 +20,7 @@ namespace DAL
                     ForMember(x => x.UserId, y => y.MapFrom(x => x.User.UserId)).
                     ForMember(x => x.User, y => y.UseValue<User>(null));
 
-                cfg.CreateMap<UserLikesEntity, DalUserLikes>().ReverseMap();
+                cfg.CreateMap<UserLikesEntity, DalUserLikesEntity>().ReverseMap();
 
                 cfg.CreateMap<Comment, DalComment>().ReverseMap();
 

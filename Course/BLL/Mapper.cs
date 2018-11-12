@@ -17,8 +17,12 @@ namespace BLL
 
                 cfg.CreateMap<DalUser, BllUser>().ReverseMap();
                 cfg.CreateMap<DalPost, BllPost>().ReverseMap();
-                cfg.CreateMap<DalUserLikes, BllUserLikes>().ReverseMap();
-                cfg.CreateMap<DalComment, BllComment>().ReverseMap();
+                cfg.CreateMap<DalUserLikesEntity, BllUserLikesEntity>().ReverseMap();
+
+                cfg.CreateMap<DalComment, BllComment>().
+                    ForMember(x=>x.User, x=>x.MapFrom(y=> new BllUser{UserId = y.UserId}));
+                cfg.CreateMap<BllComment, DalComment>().
+                    ForMember(x => x.UserId, x => x.MapFrom(y => y.User.UserId));
             });
 
             return config.CreateMapper();
