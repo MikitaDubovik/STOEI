@@ -7,42 +7,42 @@ namespace BLL.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUserRepository _userRepository;
 
         public AccountService(IUserRepository repository)
         {
-            userRepository = repository;
+            _userRepository = repository;
         }
 
         public BllUser GetUserByLogin(string login)
         {
-            return Mapper.CreateMap().Map<BllUser>(userRepository.GetUserByLogin(login));
+            return Mapper.CreateMap().Map<BllUser>(_userRepository.GetUserByLogin(login));
         }
 
         public BllUser GetUserById(int id)
         {
-            return Mapper.CreateMap().Map<BllUser>(userRepository.GetById(id));
+            return Mapper.CreateMap().Map<BllUser>(_userRepository.GetById(id));
         }
 
         public bool CheckIfUserExists(string login)
         {
-            return userRepository.CheckIfUserExists(login);
+            return _userRepository.CheckIfUserExists(login);
         }
 
         public void CreateUser(BllUser user)
         {
-            userRepository.Insert(Mapper.CreateMap().Map<DalUser>(user));
+            _userRepository.Insert(Mapper.CreateMap().Map<DalUser>(user));
         }
 
         public void EditeUserPtofile(int userId, string newName, byte[] newProfile)
         {
             if (!string.IsNullOrEmpty(newName))
             {
-                userRepository.ChangeName(userId, newName);
+                _userRepository.ChangeName(userId, newName);
             }
             if (newProfile!=null & newProfile.Length!=0)
             {
-                userRepository.ChangeProfilePhoto(userId, newProfile);
+                _userRepository.ChangeProfilePhoto(userId, newProfile);
             }
         }
     }

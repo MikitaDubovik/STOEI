@@ -1,13 +1,20 @@
-﻿using MvcPL.Helper;
-using MvcPL.Models;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
+using BLL.Interface.Services;
+using MvcPL.Helper;
+using MvcPL.Models;
 
 namespace MvcPL.Controllers
 {
     public class PayController : Controller
     {
+        private readonly IPayService _payService;
+
+        public PayController(IPayService payService)
+        {
+            _payService = payService;
+        }
+
         public ActionResult MakeAd()
         {
             return View("MakeAd");
@@ -16,7 +23,6 @@ namespace MvcPL.Controllers
         [HttpPost]
         public ActionResult MakeAd(UploadAdViewModel post)
         {
-            //TODO GET FROM DB
             FeelViewBagWithAd();
             PayModel.Model = post;
             return View("MakeAdFeatures", post);
@@ -24,7 +30,7 @@ namespace MvcPL.Controllers
 
         [HttpGet]
         public ActionResult PayPage()
-        {            
+        {
             return View("PayPage", model: PayModel.Model.Price);
         }
 
@@ -44,19 +50,19 @@ namespace MvcPL.Controllers
 
         private void FeelViewBagWithAd()
         {
-            var list = new SelectList(AdHelper.CountryList(), "Key", "Value");
+            var list = new SelectList(_payService.GetCountries(), "CountryId", "Label");
             var sortList = list.OrderBy(p => p.Text).ToList();
             ViewBag.Countries = new SelectList(sortList, "Value", "Text");
 
-            list = new SelectList(AdHelper.SexList(), "Value", "Key");
+            list = new SelectList(_payService.GetSex(), "SexId", "Label");
             sortList = list.OrderBy(p => p.Text).ToList();
             ViewBag.Sex = new SelectList(sortList, "Value", "Text");
 
-            list = new SelectList(AdHelper.AgeList(), "Value", "Key");
+            list = new SelectList(_payService.GetAges(), "AgeId", "Label");
             sortList = list.OrderBy(p => p.Text).ToList();
             ViewBag.AgeBegin = new SelectList(sortList, "Value", "Text");
-            
-            list = new SelectList(AdHelper.LanguagesList(), "Value", "Key");
+
+            list = new SelectList(_payService.GetLanguages(), "LanguageId", "Label");
             sortList = list.OrderBy(p => p.Text).ToList();
             ViewBag.Languages = new SelectList(sortList, "Value", "Text");
         }

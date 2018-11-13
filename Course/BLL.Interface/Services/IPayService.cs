@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using BLL.Interface.Entities.Ad;
 
 namespace BLL.Interface.Services
 {
@@ -13,5 +10,14 @@ namespace BLL.Interface.Services
         void Get(int id);
 
         void Pay();
+
+        List<BllSex> GetSex();
+
+        List<BllAge> GetAges();
+
+        List<BllCountry> GetCountries();
+
+        List<BllLanguage> GetLanguages();
+
     }
 }

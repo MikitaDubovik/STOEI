@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Ad\BllAge.cs" />
+    <Compile Include="Entities\Ad\BllCountry.cs" />
+    <Compile Include="Entities\Ad\BllLanguage.cs" />
+    <Compile Include="Entities\Ad\BllSex.cs" />
     <Compile Include="Entities\Post\BllTag.cs" />
     <Compile Include="Entities\Post\BllComment.cs" />
     <Compile Include="Entities\Ad\BllPayment.cs" />

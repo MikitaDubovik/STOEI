@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Interface.Entities;
+using BLL.Interface.Entities.Ad;
 using DAL.Interface.DTO;
 
 namespace BLL
@@ -23,6 +24,14 @@ namespace BLL
                     ForMember(x=>x.User, x=>x.MapFrom(y=> new BllUser{UserId = y.UserId}));
                 cfg.CreateMap<BllComment, DalComment>().
                     ForMember(x => x.UserId, x => x.MapFrom(y => y.User.UserId));
+
+                cfg.CreateMap<BllAge, DalAge>().ReverseMap();
+
+                cfg.CreateMap<BllCountry, DalCountry>().ReverseMap();
+
+                cfg.CreateMap<BllLanguage, DalLanguage>().ReverseMap();
+
+                cfg.CreateMap<BllSex, DalSex>().ReverseMap();
             });
 
             return config.CreateMapper();

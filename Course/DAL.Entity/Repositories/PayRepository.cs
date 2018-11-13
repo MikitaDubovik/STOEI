@@ -11,7 +11,12 @@ namespace DAL
     {
         private readonly ApplicationDbContext _context;
 
-        public List<DalPayment> Get()
+        public PayRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public IEnumerable<DalPayment> Get()
         {
             throw new NotImplementedException();
         }
@@ -26,24 +31,24 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public List<DalSex> GetSex()
+        public IEnumerable<DalSex> GetSex()
         {
-            return _context.Sex.Select(s => new DalSex {SexId = s.SexId, Label = s.Label}).ToList();
+            return _context.Sex.Select(s => new DalSex {SexId = s.SexId, Label = s.Label});
         }
 
-        public List<DalAge> GetAge()
+        public IEnumerable<DalAge> GetAge()
         {
-            return _context.Ages.Select(s => new DalAge { AgeId = s.AgeId, Label = s.Label }).ToList();
+            return _context.Ages.Select(s => new DalAge { AgeId = s.AgeId, Label = s.Label });
         }
 
-        public List<DalCountry> GetCountries()
+        public IEnumerable<DalCountry> GetCountries()
         {
-            return _context.Countries.Select(s => new DalCountry { CountryId = s.CountryId, Label = s.Label }).ToList();
+            return _context.Countries.Select(s => new DalCountry { CountryId = s.CountryId, Label = s.Label });
         }
 
-        public List<DalLanguage> GetLanguages()
+        public IEnumerable<DalLanguage> GetLanguages()
         {
-            return _context.Languages.Select(s => new DalLanguage() { LanguageId = s.LanguageId, Label = s.Label }).ToList();
+            return _context.Languages.Select(s => new DalLanguage { LanguageId = s.LanguageId, Label = s.Label });
         }
     }
 }

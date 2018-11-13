@@ -17,9 +17,11 @@ namespace DependencyResolver
         {
             kernel.Bind<IPostService>().To<PostService>();
             kernel.Bind<IAccountService>().To<AccountService>();
+            kernel.Bind<IPayService>().To<PayService>();
             kernel.Bind<IPostRepository>().To<PostRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<ICommentRepository>().To<CommentRepository>();
+            kernel.Bind<IPayRepository>().To<PayRepository>();
         }
     }
 }

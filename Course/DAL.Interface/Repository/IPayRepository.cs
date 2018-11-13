@@ -5,18 +5,18 @@ namespace DAL.Interface.Repository
 {
     public interface IPayRepository
     {
-        List<DalPayment> Get();
+        IEnumerable<DalPayment> Get();
 
         DalPayment Get(int id);
 
         void Pay(DalPayment payment);
 
-        List<DalSex> GetSex();
+        IEnumerable<DalSex> GetSex();
 
-        List<DalAge> GetAge();
+        IEnumerable<DalAge> GetAge();
 
-        List<DalCountry> GetCountries();
+        IEnumerable<DalCountry> GetCountries();
 
-        List<DalLanguage> GetLanguages();
+        IEnumerable<DalLanguage> GetLanguages();
     }
 }

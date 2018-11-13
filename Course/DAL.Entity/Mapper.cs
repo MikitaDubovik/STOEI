@@ -25,6 +25,14 @@ namespace DAL
                 cfg.CreateMap<Comment, DalComment>().ReverseMap();
 
                 cfg.CreateMap<Tag, DalTag>().ReverseMap();
+
+                cfg.CreateMap<Age, DalAge>().ReverseMap();
+
+                cfg.CreateMap <Country, DalCountry> ().ReverseMap();
+
+                cfg.CreateMap <Language, DalLanguage> ().ReverseMap();
+
+                cfg.CreateMap <Sex, DalSex> ().ReverseMap();
             });
 
             return config.CreateMapper();
