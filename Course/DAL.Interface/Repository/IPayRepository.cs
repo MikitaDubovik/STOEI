@@ -5,11 +5,11 @@ namespace DAL.Interface.Repository
 {
     public interface IPayRepository
     {
-        IEnumerable<DalPayment> Get();
+        IEnumerable<DalPost> Get();
 
-        DalPayment Get(int id);
+        DalPost Get(int id);
 
-        void Pay(DalPayment payment);
+        bool Pay(DalPost payment);
 
         IEnumerable<DalSex> GetSex();
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BLL.Interface.Entities;
 using BLL.Interface.Entities.Ad;
 using BLL.Interface.Services;
+using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 
 namespace BLL.Services
@@ -28,9 +28,9 @@ namespace BLL.Services
             throw new NotImplementedException();
         }
 
-        public void Pay()
+        public bool Pay(BllPost post)
         {
-            throw new NotImplementedException();
+            return _repository.Pay(Mapper.CreateMap().Map<DalPost>(post));
         }
 
         public List<BllSex> GetSex()

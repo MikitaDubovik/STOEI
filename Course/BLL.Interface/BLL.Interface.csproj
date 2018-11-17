@@ -45,7 +45,6 @@
     <Compile Include="Entities\Ad\BllSex.cs" />
     <Compile Include="Entities\Post\BllTag.cs" />
     <Compile Include="Entities\Post\BllComment.cs" />
-    <Compile Include="Entities\Ad\BllPayment.cs" />
     <Compile Include="Entities\Post\BllPost.cs" />
     <Compile Include="Entities\User\BllUser.cs" />
     <Compile Include="Entities\Post\BllUserLikesEntity.cs" />

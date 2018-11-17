@@ -4,6 +4,7 @@ using ORM.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ORM.Entity;
 
 namespace DAL
 {
@@ -16,19 +17,28 @@ namespace DAL
             _context = context;
         }
 
-        public IEnumerable<DalPayment> Get()
+        public IEnumerable<DalPost> Get()
         {
             throw new NotImplementedException();
         }
 
-        public DalPayment Get(int id)
+        public DalPost Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Pay(DalPayment payment)
+        public bool Pay(DalPost post)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Posts.Add(Mapper.CreateMap().Map<Post>(post));
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public IEnumerable<DalSex> GetSex()

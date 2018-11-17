@@ -36,7 +36,13 @@
     $.post({
         type: "POST",
         url: "PostPrice",
-        data: { price: $("#endPrice").text() }
+        data: {
+            Price: $("#endPrice").text(),
+            Language: languages,
+            Age: age,
+            Countries: countries,
+            Sex: sex
+        }
     });
 });
 

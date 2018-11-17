@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BLL.Interface.Entities;
 using BLL.Interface.Entities.Ad;
 
 namespace BLL.Interface.Services
@@ -9,7 +10,7 @@ namespace BLL.Interface.Services
 
         void Get(int id);
 
-        void Pay();
+        bool Pay(BllPost post);
 
         List<BllSex> GetSex();
 

@@ -8,11 +8,8 @@
 <h2>PayPage</h2>
 
 <div id="Container" class="container container-photo">
-    @using (Html.BeginForm("DoPay", "Pay", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div class="form-group row justify-content-center">
-            <input type="button" class="btn signUpButton" id="PayButton" value="Pay"
-                   style="margin-top: 16px">
-        </div>
-    }
+    <div class="form-group row justify-content-center">
+        @Html.ActionLink("Pay", "DoPay", null, new { type = "button", @class = "btn signUpButton", style = "margin-top: 16px" })
+    </div>
+
 </div>

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MvcPL.Models
+﻿namespace MvcPL.Models
 {
     public class UploadAdViewModel : UploadPostViewModel
     {
@@ -16,5 +11,7 @@ namespace MvcPL.Models
         public string Countries { get; set; }
 
         public string Price { get; set; }
+
+        public byte[] Photo { get; set; }
     }
 }

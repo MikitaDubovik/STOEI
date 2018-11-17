@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using BLL.Interface.Services;
 using MvcPL.Helper;
+using MvcPL.Infrastructure;
 using MvcPL.Models;
 
 namespace MvcPL.Controllers
@@ -9,10 +10,12 @@ namespace MvcPL.Controllers
     public class PayController : Controller
     {
         private readonly IPayService _payService;
+        private readonly IAccountService _accountService;
 
-        public PayController(IPayService payService)
+        public PayController(IPayService payService, IAccountService accountService)
         {
             _payService = payService;
+            _accountService = accountService;
         }
 
         public ActionResult MakeAd()
@@ -25,6 +28,7 @@ namespace MvcPL.Controllers
         {
             FeelViewBagWithAd();
             PayModel.Model = post;
+            PayModel.Model.Photo = post.ImageFile.ToByteArray();
             return View("MakeAdFeatures", post);
         }
 
@@ -34,18 +38,20 @@ namespace MvcPL.Controllers
             return View("PayPage", model: PayModel.Model.Price);
         }
 
-        [HttpPost]
-        public ActionResult DoPay(string m)
+        public ActionResult DoPay()
         {
-            //TODO Save to DB
-            return View("PayPage");
-            //return RedirectToAction("Index", "Profile");
+            _payService.Pay(PayModel.Model.ToBllPost(_accountService.GetUserByLogin(User.Identity.Name).UserId));
+            return RedirectToAction("Index", "Profile");
         }
 
         [HttpPost]
-        public void PostPrice(string price)
+        public void PostPrice(UploadAdViewModel model)
         {
-            PayModel.Model.Price = price;
+            PayModel.Model.Price = model.Price;
+            PayModel.Model.Language = model.Language;
+            PayModel.Model.Age = model.Age;
+            PayModel.Model.Countries = model.Countries;
+            PayModel.Model.Sex = model.Sex;
         }
 
         private void FeelViewBagWithAd()

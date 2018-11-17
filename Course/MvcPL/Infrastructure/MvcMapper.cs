@@ -28,10 +28,10 @@ namespace MvcPL.Infrastructure
                 Description = photo.Description,
                 Image = photo.Image,
                 NumberOfLikes = photo.NumberOfLikes,
-                Tags = photo.Tags.Select(t=>t.Text),
+                Tags = photo.Tags.Select(t => t.Text),
                 UploadDate = photo.UploadDate.ToLocalTime(),
                 UserId = photo.User.UserId,
-                UserLikesIds = photo.UserLikesEntity.Select(ul=> ul.UserLikesId)
+                UserLikesIds = photo.UserLikesEntity.Select(ul => ul.UserLikesId)
             };
         }
 
@@ -76,7 +76,6 @@ namespace MvcPL.Infrastructure
 
         public static BllPost ToBllPost(this UploadPostViewModel photo, int userId)
         {
-
             return new BllPost
             {
                 Name = photo.Name,
@@ -85,7 +84,26 @@ namespace MvcPL.Infrastructure
                 Tags = ToTags(photo.Tags),
                 UploadDate = DateTime.Now,
                 UserLikesEntity = new List<BllUserLikesEntity>(),
-                User = new BllUser {UserId = userId}
+                User = new BllUser { UserId = userId }
+            };
+        }
+
+        public static BllPost ToBllPost(this UploadAdViewModel photo, int userId)
+        {
+            return new BllPost
+            {
+                Name = photo.Name,
+                Image = photo.Photo,
+                Description = photo.Description,
+                Tags = ToTags(photo.Tags),
+                UploadDate = DateTime.Now,
+                UserLikesEntity = new List<BllUserLikesEntity>(),
+                User = new BllUser { UserId = userId },
+                LanguageId = int.Parse(photo.Language),
+                SexId = int.Parse(photo.Sex),
+                CountryId = int.Parse(photo.Countries),
+                AgeId = int.Parse(photo.Age),
+                IsAd = true
             };
         }
 
@@ -123,36 +141,13 @@ namespace MvcPL.Infrastructure
             };
         }
 
-        public static UploadAdViewModel ToUploadAdViewModel(this BllPayment payment)
-        {
-            return new UploadAdViewModel
-            {
-                Age = payment.Age,
-                Countries = payment.Countries,
-                Language = payment.Language,
-                Price = payment.Price,
-                Sex = payment.Sex
-            };
-        }
-
-        public static BllPayment ToBllPayment(this UploadAdViewModel payment)
-        {
-            return new BllPayment
-            {
-                Age = payment.Age,
-                Countries = payment.Countries,
-                Language = payment.Language,
-                Price = payment.Price,
-                Sex = payment.Sex
-            };
-        }
-
         public static byte[] ToByteArray(this HttpPostedFileBase photo)
         {
             if (photo == null)
             {
                 return new byte[0];
             }
+            photo.InputStream.Flush();
             byte[] thePictureAsBytes = new byte[photo.ContentLength];
             using (BinaryReader theReader = new BinaryReader(photo.InputStream))
             {

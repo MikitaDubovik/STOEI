@@ -36,13 +36,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\Ad\DalAdInformation.cs" />
     <Compile Include="DTO\Ad\DalAge.cs" />
     <Compile Include="DTO\Ad\DalCountry.cs" />
     <Compile Include="DTO\Ad\DalLanguage.cs" />
     <Compile Include="DTO\Post\DalTag.cs" />
     <Compile Include="DTO\Post\DalComment.cs" />
-    <Compile Include="DTO\Ad\DalPayment.cs" />
     <Compile Include="DTO\Post\DalPost.cs" />
     <Compile Include="DTO\Ad\DalSex.cs" />
     <Compile Include="DTO\User\DalUser.cs" />
