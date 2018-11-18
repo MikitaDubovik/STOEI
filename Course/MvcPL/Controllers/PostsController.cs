@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using BLL.Interface.Services;
+using MvcPL.Helper;
 using MvcPL.Infrastructure;
 using MvcPL.Models;
 using MvcPL.Models.Pagination;
@@ -20,6 +21,7 @@ namespace MvcPL.Controllers
         {
             _postService = postService;
             _accountService = accountService;
+            //FillAds();
         }
 
         public ActionResult Index(int page = 1)
@@ -32,7 +34,7 @@ namespace MvcPL.Controllers
                 UrlPart = Url.Action("LoadMore", "Posts", new { tag = "" })
             };
 
-            IEnumerable<int> photosIds = _postService.GetAll(0, pageInfo.PageSize)
+            IEnumerable<int> photosIds = _postService.GetAllWithoutAd(0, pageInfo.PageSize)
                 .Select(p => p.PostId);
 
             var photos = new List<ImageViewModel>(photosIds.Count());
@@ -43,6 +45,18 @@ namespace MvcPL.Controllers
             }));
 
             return View(new PaginationViewModel<ImageViewModel> { Items = photos, PageInfo = pageInfo });
+        }
+
+        private void FillAds()
+        {
+            IEnumerable<int> photosIds = _postService.GetAllWithAd().Select(p => p.PostId);
+            var photos = new List<ImageViewModel>(photosIds.Count());
+            photos.AddRange(photosIds.Select(id => new ImageViewModel
+            {
+                ImageUrl = ToImageUrl(id),
+                ImageDetailsUrl = ToImageDetailsUrl(id)
+            }));
+            AdHelper.AdPosts = photos;
         }
 
         public ActionResult Find(string term)

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Entity
 {
@@ -25,5 +26,25 @@ namespace ORM.Entity
         public string Phone { get; set; }
 
         public byte[] ProfilePhoto { get; set; }
+
+        public int? AgeId { get; set; }
+
+        [ForeignKey(nameof(AgeId))]
+        public virtual Age Age { get; set; }
+
+        public int? CountryId { get; set; }
+
+        [ForeignKey(nameof(CountryId))]
+        public virtual Country Country { get; set; }
+
+        public int? LanguageId { get; set; }
+
+        [ForeignKey(nameof(LanguageId))]
+        public virtual Language Language { get; set; }
+
+        public int? SexId { get; set; }
+
+        [ForeignKey(nameof(SexId))]
+        public virtual Sex Sex { get; set; }
     }
 }

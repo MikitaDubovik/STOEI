@@ -12,37 +12,65 @@
 }
 
 @section body{
-    <div class="container container-photo">
+<div class="container container-photo">
 
-        @using (Html.BeginForm("EditPtofile", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("EditProfile", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="form-group row justify-content-center">
             @Html.LabelFor(m => m.Name, new { @class = "col-form-label uploadLabel col-md-2" })
-            <div class="col-md-6">
-                <input class="form-control" id="Name" name="Name" type="text" value="@Model.Name">
+            <div class="col-md-5">
+                <input class="form-control" id="Name" name="Name" type="text" value="@Model.Name" style="width: 60% !important">
             </div>
         </div>
+
+        <div class="form-group row justify-content-center">
+            @Html.LabelFor(m => m.Country, new { @class = "col-form-label uploadLabel col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("DdlCountries", (SelectList)ViewBag.Countries, new { multiple = "multiple", style = "height:100%; width: 60%;" })
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            @Html.LabelFor(m => m.Sex, new { @class = "col-form-label uploadLabel col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("DdlSex", (SelectList)ViewBag.Sex, new { multiple = "multiple", style = "height:75%; width: 60%;" })
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            @Html.LabelFor(m => m.Age, new { @class = "col-form-label uploadLabel col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("DdlAge", (SelectList)ViewBag.AgeBegin, new { style = "height:100%; width: 60%;" })
+            </div>
+        </div>
+        <div class="form-group row justify-content-center">
+            @Html.LabelFor(m => m.Language, new { @class = "col-form-label uploadLabel col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("DdlLanguage", (SelectList)ViewBag.Languages, new { multiple = "multiple", style = "height:125%; width: 60%;" })
+            </div>
+        </div>
+
         <div class="form-group row justify-content-center">
             <div class="col-form-label uploadLabel col-md-2">Profile photo</div>
             <div class="col-md-6"></div>
             <div class="col-md-12">
-                <div class="labelCurrentPost">Current</div>
+                <div class="labelCurrentPhoto">Current</div>
 
                 @if (Model.ProfilePost == null || Model.ProfilePost.Length == 0)
                 {
-                    <div class="currentPost">
+                    <div class="currentPhoto">
                         <img src="~/Content/default_photo.jpg" height="200px" width="auto" style="border-radius:10px">
                     </div>
 
                 }
                 else
                 {
-                    <div class="currentPost">
+                    <div class="currentPhoto">
                         <img src="@Url.Action("ShowImage", "Profile", new {image = Model.ProfilePost})"
-                              height="200px" width="auto" style="border-radius: 10px">
+                             height="200px" width="auto" style="border-radius: 10px">
                     </div>
                 }
-                
+
                 <div class="new_Btn btn signUpButton" style="margin-top: 5px; margin-bottom: 16px">Select picture</div><br>
                 <input type="file" id="ImageFile" name="ImageFile" class="btn signUpButton" accept=".jpg, .jpeg, .png" />
 
@@ -53,13 +81,13 @@
 
             </div>
         </div>
-        
-            <input type="submit" class="btn signUpButton" id="UploadButton" value="Save changes"
-                   style="margin-top: 16px">
-        }
+
+        <input type="submit" class="btn signUpButton" id="UploadButton" value="Save changes"
+               style="margin-top: 16px">
+    }
 
 
-    </div>
+</div>
 
 }
 @section scripts

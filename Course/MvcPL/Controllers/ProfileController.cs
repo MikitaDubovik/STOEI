@@ -1,10 +1,10 @@
-﻿using BLL.Interface.Services;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using BLL.Interface.Services;
 using MvcPL.Infrastructure;
 using MvcPL.Models;
 using MvcPL.Models.Pagination;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace MvcPL.Controllers
 {
@@ -14,11 +14,14 @@ namespace MvcPL.Controllers
         public const int ImagesOnPage = 10;
         private readonly IAccountService _accountService;
         private readonly IPostService _postService;
+        private readonly IPayService _payService;
+        private static ProfileInfoViewModel _profileModel;
 
-        public ProfileController(IAccountService accountService, IPostService postService)
+        public ProfileController(IAccountService accountService, IPostService postService, IPayService payService)
         {
             _accountService = accountService;
             _postService = postService;
+            _payService = payService;
         }
 
         public ActionResult Index()
@@ -84,17 +87,52 @@ namespace MvcPL.Controllers
 
         public ActionResult EditProfile()
         {
+            FeelViewBagWithAd();
             ProfileInfoViewModel profileViewModel = _accountService.
                 GetUserByLogin(User.Identity.Name).ToProfileInfoViewModel();
             return View("EditProfile", profileViewModel);
         }
 
         [HttpPost]
-        public ActionResult EditPtofile(EditProfileViewModel model)
+        public ActionResult EditProfile(EditProfileViewModel model)
         {
             int userId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
-            _accountService.EditeUserPtofile(userId, model.Name, model.ImageFile.ToByteArray());
+
+            _accountService.UpdateUserProfile(
+                userId,
+                model.Name,
+                model.ImageFile.ToByteArray(),
+                _profileModel.Age,
+                _profileModel.Sex,
+                _profileModel.Country,
+                _profileModel.Language);
+
             return RedirectToAction("Index", "Profile");
+        }
+
+        [HttpPost]
+        public void GetProfileInfo(ProfileInfoViewModel model)
+        {
+            _profileModel = model;
+        }
+
+        private void FeelViewBagWithAd()
+        {
+            var list = new SelectList(_payService.GetCountries(), "CountryId", "Label");
+            var sortList = list.OrderBy(p => p.Text).ToList();
+            ViewBag.Countries = new SelectList(sortList, "Value", "Text");
+
+            list = new SelectList(_payService.GetSex(), "SexId", "Label");
+            sortList = list.OrderBy(p => p.Text).ToList();
+            ViewBag.Sex = new SelectList(sortList, "Value", "Text");
+
+            list = new SelectList(_payService.GetAges(), "AgeId", "Label");
+            sortList = list.OrderBy(p => p.Text).ToList();
+            ViewBag.AgeBegin = new SelectList(sortList, "Value", "Text");
+
+            list = new SelectList(_payService.GetLanguages(), "LanguageId", "Label");
+            sortList = list.OrderBy(p => p.Text).ToList();
+            ViewBag.Languages = new SelectList(sortList, "Value", "Text");
         }
     }
 }

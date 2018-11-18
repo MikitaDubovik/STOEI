@@ -34,16 +34,10 @@ namespace BLL.Services
             _userRepository.Insert(Mapper.CreateMap().Map<DalUser>(user));
         }
 
-        public void EditeUserPtofile(int userId, string newName, byte[] newProfile)
+        public void UpdateUserProfile(int userId, string newName, byte[] newProfile,
+            string ageId, string sexId, string countryId, string languageId)
         {
-            if (!string.IsNullOrEmpty(newName))
-            {
-                _userRepository.ChangeName(userId, newName);
-            }
-            if (newProfile!=null & newProfile.Length!=0)
-            {
-                _userRepository.ChangeProfilePhoto(userId, newProfile);
-            }
+            _userRepository.UpdateProfile(userId, newName, newProfile, ageId, sexId, countryId, languageId);
         }
     }
 }

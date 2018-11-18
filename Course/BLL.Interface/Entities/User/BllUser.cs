@@ -17,5 +17,13 @@
         public string Phone { get; set; }
 
         public byte[] ProfilePhoto { get; set; }
+
+        public int? AgeId { get; set; }
+
+        public int? CountryId { get; set; }
+
+        public int? LanguageId { get; set; }
+
+        public int? SexId { get; set; }
     }
 }

@@ -41,10 +41,19 @@ namespace DAL
             _context.SaveChanges();
         }
 
-        public IEnumerable<DalPost> GetAll(int skip = 0, int take = 10)
+        public IEnumerable<DalPost> GetAllWithoutAd(int skip = 0, int take = 10)
         {
-            return _context.Posts.OrderByDescending(p => p.UploadDate).Skip(skip).Take(take).AsEnumerable()
-                            .Select(p => Mapper.CreateMap().Map<DalPost>(p));
+            return _context.Posts.OrderByDescending(p => p.UploadDate).Where(p => !p.IsAd)
+                .Skip(skip).Take(take)
+                .AsEnumerable()
+                .Select(p => Mapper.CreateMap().Map<DalPost>(p));
+        }
+
+        public IEnumerable<DalPost> GetAllWithAd()
+        {
+            return _context.Posts.OrderByDescending(p => p.UploadDate).Where(p => p.IsAd)
+                .AsEnumerable()
+                .Select(p => Mapper.CreateMap().Map<DalPost>(p));
         }
 
         public IEnumerable<DalPost> GetByTag(string tag, int skip = 0, int take = 10)

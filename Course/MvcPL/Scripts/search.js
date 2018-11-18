@@ -111,14 +111,6 @@ $('#loadMoreForm').submit(function (event) {
         });
 });
 
-
-
-
-
-
-
-
-
 function GetImages(url, page) {
     event.preventDefault();
 
@@ -135,16 +127,6 @@ function ShowImagesAndPagination(data) {
 
     ShowImages(data);
     ListOfPages(data.PageInfo);
-    //$('#listOfPages').empty();
-    //for (var i = 0; i < data.PageInfo.TotalPages; i++) {
-    //    $('#listOfPages').append('<a href="#" onclick="GetIamges(' +
-    //        data.PageInfo.UrlPart +
-    //        ', ' +
-    //        (i + 1) +
-    //        ')">' +
-    //        (i + 1) +
-    //        '</a>');
-    //}
 }
 
 function ListOfPages(data) {

@@ -8,6 +8,6 @@ namespace BLL.Interface.Services
         BllUser GetUserById(int id);
         bool CheckIfUserExists(string login);
         void CreateUser(BllUser user);
-        void EditeUserPtofile(int userId, string newName, byte[] newProfile);
+        void UpdateUserProfile(int userId, string newName, byte[] newProfile, string ageId, string sexId, string countryId, string languageId);
     }
 }

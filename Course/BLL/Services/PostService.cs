@@ -25,9 +25,14 @@ namespace BLL.Services
             return Mapper.CreateMap().Map<BllUser>(_userRepository.GetById(id));
         }
 
-        public IEnumerable<BllPost> GetAll(int skip, int take)
+        public IEnumerable<BllPost> GetAllWithoutAd(int skip, int take)
         {
-            return _postRepository.GetAll(skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));
+            return _postRepository.GetAllWithoutAd(skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));
+        }
+
+        public IEnumerable<BllPost> GetAllWithAd()
+        {
+            return _postRepository.GetAllWithAd().Select(p => Mapper.CreateMap().Map<BllPost>(p));
         }
 
         public void Add(BllPost photo)
@@ -51,7 +56,7 @@ namespace BLL.Services
         {
             if (tag == string.Empty)
             {
-                return _postRepository.GetAll(skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));
+                return _postRepository.GetAllWithoutAd(skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));
             }
 
             return _postRepository.GetByTag(tag, skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));

@@ -70,7 +70,11 @@ namespace MvcPL.Infrastructure
             return new ProfileInfoViewModel
             {
                 Name = user.Name,
-                ProfilePost = user.ProfilePhoto
+                ProfilePost = user.ProfilePhoto,
+                Language = user.LanguageId.ToString(),
+                Country = user.CountryId.ToString(),
+                Sex = user.SexId.ToString(),
+                Age = user.AgeId.ToString()
             };
         }
 

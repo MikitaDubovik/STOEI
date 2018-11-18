@@ -30,3 +30,25 @@ var ReadImage = function (file) {
         };
     };
 };
+
+$('#UploadButton').bind("click", function () {
+
+    var country = $("#DdlCountries").val();
+
+    var sex = $("#DdlSex").val();
+
+    var age = parseInt($("#DdlAge").val());
+
+    var languages = $("#DdlLanguage").val();
+
+    $.post({
+        type: "POST",
+        url: "GetProfileInfo",
+        data: {
+            Language: languages,
+            Age: age,
+            Country: country,
+            Sex: sex
+        }
+    });
+});

@@ -17,8 +17,6 @@ namespace DAL
 
         public DalUser GetById(int key)
         {
-            var t = _context.Users.FirstOrDefault(u => u.UserId == key);
-            var tt = Mapper.CreateMap().Map<DalUser>(_context.Users.FirstOrDefault(u => u.UserId == key));
             return Mapper.CreateMap().Map<DalUser>(_context.Users.FirstOrDefault(u => u.UserId == key));
         }
 
@@ -45,13 +43,6 @@ namespace DAL
             _context.SaveChanges();
         }
 
-        public void ChangeName(int userId, string newName)
-        {
-            var temp = _context.Users.Find(userId);
-            temp.Name = newName;
-            _context.SaveChanges();
-        }
-
         public DalUser GetUserByLogin(string login)
         {
             return Mapper.CreateMap().Map<DalUser>(_context.Users.FirstOrDefault(u => u.Login == login));
@@ -62,11 +53,65 @@ namespace DAL
             return _context.Users.FirstOrDefault(u => u.Login == login) != null;
         }
 
-        public void ChangeProfilePhoto(int userId, byte[] newProfilePhoto)
+        public void UpdateProfile(int userId, string newName, byte[] newProfile, string ageId, string sexId, string countryId,
+            string languageId)
         {
             var temp = _context.Users.Find(userId);
-            temp.ProfilePhoto = newProfilePhoto;
+
+            temp.Name = UpdateProperty(temp.Name, newName).ToString();
+            temp.ProfilePhoto = UpdateProperty(temp.ProfilePhoto, newProfile);
+
+            temp.AgeId = UpdateProperty(temp.AgeId, ageId);
+            temp.SexId = UpdateProperty(temp.SexId, sexId);
+            temp.CountryId = UpdateProperty(temp.CountryId, countryId);
+            temp.LanguageId = UpdateProperty(temp.LanguageId, languageId);
+
             _context.SaveChanges();
+        }
+
+        private byte[] UpdateProperty(byte[] oldVal, byte[] newVal)
+        {
+            if (oldVal.Length != 0 && newVal.Length == 0)
+            {
+                return oldVal;
+            }
+
+            if (oldVal.Length == 0 && newVal.Length == 0)
+            {
+                return new byte[0];
+            }
+
+            return newVal;
+        }
+
+        private object UpdateProperty(object oldVal, object newVal)
+        {
+            if (oldVal != null && newVal == null)
+            {
+                return oldVal;
+            }
+
+            if (oldVal == null && newVal == null)
+            {
+                return null;
+            }
+
+            return newVal;
+        }
+
+        private int? UpdateProperty(int? oldVal, string newVal)
+        {
+            if (oldVal != null && newVal == null)
+            {
+                return oldVal;
+            }
+
+            if (oldVal == null && newVal == null)
+            {
+                return null;
+            }
+
+            return int.Parse(newVal);
         }
     }
 }
