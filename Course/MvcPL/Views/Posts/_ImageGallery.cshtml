@@ -21,7 +21,7 @@
         i++;
     }
 </div>
-<div id="listOfPages">
+<div id="listOfPages" style="text-align: center">
     
     @{
         int j;
@@ -38,19 +38,4 @@
         <a id="page@(j + 1)" href="#" onclick="" class="hide"></a>
         j++;
     }
-
-    @*@if (Model.PageInfo.TotalPages >= 2)
-    {
-        <a href="#" onclick="GetImages('@Model.PageInfo.UrlPart', 2)" class="btn signUpButton" id="next">
-            <i class="icon ion-ios-arrow-right" style="font-size: 18px;"></i>
-        </a>
-    }
-    else
-    {
-        <a href="#" onclick="" class="btn signUpButton hide" id="next">
-            <i class="icon ion-ios-arrow-right" style="font-size: 18px;"></i>
-        </a>
-    }*@
-
-
 </div>

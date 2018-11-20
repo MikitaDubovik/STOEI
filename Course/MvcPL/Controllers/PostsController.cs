@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using MvcPL.Helper;
 using MvcPL.Infrastructure;
@@ -21,11 +22,13 @@ namespace MvcPL.Controllers
         {
             _postService = postService;
             _accountService = accountService;
-            //FillAds();
         }
 
         public ActionResult Index(int page = 1)
         {
+            var imagesOnPage = ImagesOnPage;
+            var ad = GetAd(ref imagesOnPage);
+
             var pageInfo = new PageInfo
             {
                 PageNumber = page,
@@ -34,7 +37,7 @@ namespace MvcPL.Controllers
                 UrlPart = Url.Action("LoadMore", "Posts", new { tag = "" })
             };
 
-            IEnumerable<int> photosIds = _postService.GetAllWithoutAd(0, pageInfo.PageSize)
+            IEnumerable<int> photosIds = _postService.GetAllWithoutAd(0, imagesOnPage)
                 .Select(p => p.PostId);
 
             var photos = new List<ImageViewModel>(photosIds.Count());
@@ -44,19 +47,16 @@ namespace MvcPL.Controllers
                 ImageDetailsUrl = ToImageDetailsUrl(id)
             }));
 
-            return View(new PaginationViewModel<ImageViewModel> { Items = photos, PageInfo = pageInfo });
-        }
-
-        private void FillAds()
-        {
-            IEnumerable<int> photosIds = _postService.GetAllWithAd().Select(p => p.PostId);
-            var photos = new List<ImageViewModel>(photosIds.Count());
-            photos.AddRange(photosIds.Select(id => new ImageViewModel
+            if (ad != null)
             {
-                ImageUrl = ToImageUrl(id),
-                ImageDetailsUrl = ToImageDetailsUrl(id)
-            }));
-            AdHelper.AdPosts = photos;
+                photos.Insert(0, new ImageViewModel
+                {
+                    ImageUrl = ToImageUrl(ad.PostId),
+                    ImageDetailsUrl = ToImageDetailsUrl(ad.PostId)
+                });
+            }
+
+            return View(new PaginationViewModel<ImageViewModel> { Items = photos, PageInfo = pageInfo });
         }
 
         public ActionResult Find(string term)
@@ -78,6 +78,9 @@ namespace MvcPL.Controllers
 
         public ActionResult Search(string tag = "", int page = 1)
         {
+            var imagesOnPage = ImagesOnPage;
+            BllPost ad;
+
             var pageInfo = new PageInfo
             {
                 PageNumber = page,
@@ -104,6 +107,9 @@ namespace MvcPL.Controllers
 
         public ActionResult LoadMore(string tag = "", int page = 1)
         {
+            var imagesOnPage = ImagesOnPage;
+            var ad = GetAd(ref imagesOnPage);
+
             var pageInfo = new PageInfo
             {
                 PageNumber = page,
@@ -112,7 +118,7 @@ namespace MvcPL.Controllers
                 UrlPart = Url.Action("LoadMore", "Posts", new { tag })
             };
 
-            var photosIds = _postService.GetByTag(tag, pageInfo.Skip, pageInfo.PageSize)
+            var photosIds = _postService.GetByTag(tag, pageInfo.Skip, imagesOnPage)
                 .Select(p => p.PostId);
 
             var photos = new List<ImageViewModel>(photosIds.Count());
@@ -122,11 +128,37 @@ namespace MvcPL.Controllers
                 ImageDetailsUrl = ToImageDetailsUrl(id)
             }));
 
+            if (ad != null)
+            {
+                photos.Insert(0, new ImageViewModel
+                {
+                    ImageUrl = ToImageUrl(ad.PostId),
+                    ImageDetailsUrl = ToImageDetailsUrl(ad.PostId)
+                });
+            }
+
             var pagedPosts =
                 new PaginationViewModel<ImageViewModel> { PageInfo = pageInfo, Items = photos };
 
             return Json(pagedPosts, JsonRequestBehavior.AllowGet);
+        }
 
+        private BllPost GetAd(ref int imagesOnPage)
+        {
+            BllPost ad;
+            AdHelper.Initialize(_postService.GetAllWithAd());
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = _accountService.GetUserByLogin(User.Identity.Name);
+                ad = AdHelper.GetAd(user.AgeId, user.SexId, user.CountryId, user.LanguageId);
+                imagesOnPage -= 1;
+            }
+            else
+            {
+                ad = AdHelper.GetRandomAd();
+            }
+
+            return ad;
         }
 
         private string ToImageUrl(int id)

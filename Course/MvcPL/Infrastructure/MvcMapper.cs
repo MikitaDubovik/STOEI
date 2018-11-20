@@ -103,10 +103,10 @@ namespace MvcPL.Infrastructure
                 UploadDate = DateTime.Now,
                 UserLikesEntity = new List<BllUserLikesEntity>(),
                 User = new BllUser { UserId = userId },
-                LanguageId = int.Parse(photo.Language),
-                SexId = int.Parse(photo.Sex),
-                CountryId = int.Parse(photo.Countries),
-                AgeId = int.Parse(photo.Age),
+                LanguageId = int.TryParse(photo.Language, out var tempL) ? tempL : (int?)null,
+                SexId = int.TryParse(photo.Sex, out var tempS) ? tempS : (int?)null,
+                CountryId = int.TryParse(photo.Countries, out var tempC) ? tempC : (int?)null,
+                AgeId = int.TryParse(photo.Age, out var tempA) ? tempA : (int?)null,
                 IsAd = true
             };
         }
