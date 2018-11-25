@@ -151,14 +151,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\amex.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\default_photo.jpg" />
+    <Content Include="Content\demo.css" />
     <Content Include="Content\home.png" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\mastercard.jpg" />
     <Content Include="Content\mole.jpg" />
     <Content Include="Content\signout.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\creditCared.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -201,6 +205,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\user_green-5121.png" />
+    <Content Include="Content\visa.jpg" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\ionicons.eot" />
@@ -216,6 +221,7 @@
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.payform.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -225,6 +231,7 @@
     <Content Include="Scripts\photoDetails.js" />
     <Content Include="Scripts\popover.js" />
     <Content Include="Scripts\profilePhoto.js" />
+    <Content Include="Scripts\payFormValidate.js" />
     <Content Include="Scripts\search.js" />
     <Content Include="Scripts\uploadImage.js" />
     <Content Include="Web.config">
