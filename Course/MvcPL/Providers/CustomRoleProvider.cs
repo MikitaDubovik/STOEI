@@ -21,7 +21,7 @@ namespace MvcPL.Providers
             string roles = AccountService.GetUserByLogin(username).Roles;
             var arrRoles = new string[1];
 
-            arrRoles[1] = roles;
+            arrRoles[0] = roles;
 
             return arrRoles;
         }

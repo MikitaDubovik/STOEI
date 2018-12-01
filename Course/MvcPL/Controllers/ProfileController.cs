@@ -28,7 +28,6 @@ namespace MvcPL.Controllers
         {
             ProfileViewModel profileViewModel = _accountService.
                 GetUserByLogin(User.Identity.Name).ToProfileViewModel();
-
             int userId = _accountService.GetUserByLogin(User.Identity.Name).UserId;
 
             PageInfo pageInfo = new PageInfo

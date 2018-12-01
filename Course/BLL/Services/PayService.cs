@@ -11,11 +11,13 @@ namespace BLL.Services
 {
     public class PayService : IPayService
     {
-        private readonly IPayRepository _repository;
+        private readonly IPayRepository _payRepository;
+        private readonly IPostRepository _postRepository;
 
-        public PayService(IPayRepository repository)
+        public PayService(IPayRepository payRepository, IPostRepository postRepository)
         {
-            _repository = repository;
+            _payRepository = payRepository;
+            _postRepository = postRepository;
         }
 
         public List<string> All()
@@ -30,27 +32,32 @@ namespace BLL.Services
 
         public bool Pay(BllPost post)
         {
-            return _repository.Pay(Mapper.CreateMap().Map<DalPost>(post));
+            return _payRepository.Pay(Mapper.CreateMap().Map<DalPost>(post));
         }
 
         public List<BllSex> GetSex()
         {
-            return _repository.GetSex().Select(p => Mapper.CreateMap().Map<BllSex>(p)).ToList();
+            return _payRepository.GetSex().Select(p => Mapper.CreateMap().Map<BllSex>(p)).ToList();
         }
 
         public List<BllAge> GetAges()
         {
-            return _repository.GetAge().Select(p => Mapper.CreateMap().Map<BllAge>(p)).ToList();
+            return _payRepository.GetAge().Select(p => Mapper.CreateMap().Map<BllAge>(p)).ToList();
         }
 
         public List<BllCountry> GetCountries()
         {
-            return _repository.GetCountries().Select(p => Mapper.CreateMap().Map<BllCountry>(p)).ToList();
+            return _payRepository.GetCountries().Select(p => Mapper.CreateMap().Map<BllCountry>(p)).ToList();
         }
 
         public List<BllLanguage> GetLanguages()
         {
-            return _repository.GetLanguages().Select(p => Mapper.CreateMap().Map<BllLanguage>(p)).ToList();
+            return _payRepository.GetLanguages().Select(p => Mapper.CreateMap().Map<BllLanguage>(p)).ToList();
+        }
+
+        public List<BllPost> GetManagementInfo()
+        {
+            return _postRepository.GetAllWithAd().Select(p => Mapper.CreateMap().Map<BllPost>(p)).ToList();
         }
     }
 }

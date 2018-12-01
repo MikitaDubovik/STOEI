@@ -20,5 +20,7 @@ namespace BLL.Interface.Services
 
         List<BllLanguage> GetLanguages();
 
+        List<BllPost> GetManagementInfo();
+
     }
 }

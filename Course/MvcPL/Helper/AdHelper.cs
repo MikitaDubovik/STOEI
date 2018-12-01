@@ -63,6 +63,9 @@ namespace MvcPL.Helper
                 temp = superTemp;
             }
 
+            if (!(AdPosts.Count > 0))
+                return null;
+
             var random = new Random();
             var index = random.Next(0, temp.Count - 1);
 
@@ -71,6 +74,9 @@ namespace MvcPL.Helper
 
         public static BllPost GetRandomAd()
         {
+            if (!(AdPosts.Count > 0))
+                return null;
+
             var random = new Random();
             var index = random.Next(0, AdPosts.Count);
 

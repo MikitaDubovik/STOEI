@@ -32,5 +32,7 @@ namespace BLL.Interface.Entities
         public int? SexId { get; set; }
 
         public bool IsAd { get; set; }
+
+        public string Price { get; set; }
     }
 }

@@ -54,5 +54,7 @@ namespace ORM.Entity
 
         [ForeignKey(nameof(SexId))]
         public virtual Sex Sex { get; set; }
+
+        public string Price { get; set; }
     }
 }

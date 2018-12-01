@@ -51,6 +51,7 @@ $(function() {
         if(owner.val().length < 5){
             alert("Wrong owner name");
         } else if (!isCardValid) {
+            console.log("4716108999716531");
             alert("Wrong card number");
         } else if (!isCvvValid) {
             alert("Wrong CVV");

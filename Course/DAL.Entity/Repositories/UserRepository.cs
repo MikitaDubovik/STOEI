@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 using ORM.Context;
@@ -45,7 +46,10 @@ namespace DAL
 
         public DalUser GetUserByLogin(string login)
         {
-            return Mapper.CreateMap().Map<DalUser>(_context.Users.FirstOrDefault(u => u.Login == login));
+            return Mapper.CreateMap().Map<DalUser>(
+                _context.Users.
+                    Include(u => u.Roles).
+                    FirstOrDefault(u => u.Login == login));
         }
 
         public bool CheckIfUserExists(string login)

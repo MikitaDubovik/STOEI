@@ -11,7 +11,7 @@ namespace DAL
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<User, DalUser>().
-                    ForMember(x => x.Roles, y => y.MapFrom(x => x.Roles.RoleId));
+                    ForMember(x => x.Roles, y => y.MapFrom(x => x.Roles.Name));
                 cfg.CreateMap<DalUser, User>().
                     ForMember(x => x.Roles, y => y.MapFrom(x => new Role { Name = x.Roles }));
 

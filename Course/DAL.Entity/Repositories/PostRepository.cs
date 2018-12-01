@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using DAL.Interface.DTO;
 using DAL.Interface.Repository;
@@ -51,9 +52,12 @@ namespace DAL
 
         public IEnumerable<DalPost> GetAllWithAd()
         {
-            return _context.Posts.OrderByDescending(p => p.UploadDate).Where(p => p.IsAd)
-                .AsEnumerable()
-                .Select(p => Mapper.CreateMap().Map<DalPost>(p));
+            return _context.Posts.
+                Where(p => p.IsAd).
+                Include(p=>p.User).
+                OrderByDescending(p => p.UploadDate).
+                AsEnumerable().
+                Select(p => Mapper.CreateMap().Map<DalPost>(p));
         }
 
         public IEnumerable<DalPost> GetByTag(string tag, int skip = 0, int take = 10)

@@ -107,7 +107,8 @@ namespace MvcPL.Infrastructure
                 SexId = int.TryParse(photo.Sex, out var tempS) ? tempS : (int?)null,
                 CountryId = int.TryParse(photo.Countries, out var tempC) ? tempC : (int?)null,
                 AgeId = int.TryParse(photo.Age, out var tempA) ? tempA : (int?)null,
-                IsAd = true
+                IsAd = true,
+                Price = photo.Price
             };
         }
 

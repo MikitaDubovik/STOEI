@@ -2,7 +2,11 @@
 @model string
 @{
     ViewBag.Title = "PayPage";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section SearchForm
+{
+    @Html.Partial("_SearchFormAuthRedirectToHome")
 }
 
 <body>

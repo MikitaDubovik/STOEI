@@ -44,6 +44,21 @@ namespace MvcPL.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
+        public ActionResult Management()
+        {
+            var managementViewModel = _payService.GetManagementInfo();
+            var model = new AdsAggregatorViewModel
+                { ViewModels = managementViewModel.
+                    Select(m => new ManagementViewModel
+                        { PostId = m.PostId.ToString(),
+                            Price = m.Price,
+                            UserEmail = m.User.Email
+
+                        }) };
+
+            return View("Management", model);
+        }
+
         [HttpPost]
         public void PostPrice(UploadAdViewModel model)
         {
