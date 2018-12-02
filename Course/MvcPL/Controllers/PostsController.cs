@@ -260,12 +260,5 @@ namespace MvcPL.Controllers
             var model = new PaginationViewModel<CommentViewModel> { PageInfo = pageInfo, Items = comments };
             return PartialView("_Comments", model);
         }
-
-        [Authorize]
-        public ActionResult DeletePost(int postId)
-        {
-            _postService.Delete(postId);
-            return RedirectToAction("Index");
-        }
     }
 }

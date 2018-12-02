@@ -115,6 +115,13 @@ namespace MvcPL.Controllers
             _profileModel = model;
         }
 
+        [Authorize]
+        public ActionResult DeletePost(int postId)
+        {
+            _postService.Delete(postId);
+            return RedirectToAction("Index");
+        }
+
         private void FeelViewBagWithAd()
         {
             var list = new SelectList(_payService.GetCountries(), "CountryId", "Label");
