@@ -62,7 +62,9 @@ namespace DAL
         {
             var temp = _context.Users.Find(userId);
 
-            temp.Name = UpdateProperty(temp.Name, newName).ToString();
+            var tempName = UpdateProperty(temp.Name, newName);
+
+            temp.Name = tempName == null ? string.Empty : tempName.ToString();
             temp.ProfilePhoto = UpdateProperty(temp.ProfilePhoto, newProfile);
 
             temp.AgeId = UpdateProperty(temp.AgeId, ageId);
