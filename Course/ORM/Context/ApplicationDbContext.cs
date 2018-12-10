@@ -31,5 +31,7 @@ namespace ORM.Context
         public DbSet<Age> Ages { get; set; }
 
         public DbSet<Country> Countries { get; set; }
+
+        public DbSet<DisabledAd> DisabledAds { get; set; }
     }
 }

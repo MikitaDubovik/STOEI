@@ -4,5 +4,6 @@
     {
         public string ImageUrl;
         public string ImageDetailsUrl;
+        public bool IsAd;
     }
 }

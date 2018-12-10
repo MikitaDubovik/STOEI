@@ -380,3 +380,9 @@
 select {
     overflow-y: hidden !important;
 }
+
+.shadow {
+    background: #28a745; /* Цвет фона */
+    box-shadow: 0 0 0 rgba(0,0,0,0.5); /* Параметры тени */
+    padding: 5px;
+}

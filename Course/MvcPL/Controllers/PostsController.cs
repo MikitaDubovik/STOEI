@@ -52,7 +52,8 @@ namespace MvcPL.Controllers
                 photos.Insert(0, new ImageViewModel
                 {
                     ImageUrl = ToImageUrl(ad.PostId),
-                    ImageDetailsUrl = ToImageDetailsUrl(ad.PostId)
+                    ImageDetailsUrl = ToImageDetailsUrl(ad.PostId),
+                    IsAd = true
                 });
             }
 

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Context\ApplicationDbContext.cs" />
     <Compile Include="Entity\Ad\Age.cs" />
+    <Compile Include="Entity\DisabledAd.cs" />
     <Compile Include="Entity\Post\Comment.cs" />
     <Compile Include="Entity\Ad\Country.cs" />
     <Compile Include="Entity\Ad\Language.cs" />
@@ -74,6 +75,10 @@
     <Compile Include="Migrations\201812011550365_addPrice.Designer.cs">
       <DependentUpon>201812011550365_addPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812101854560_Consult.cs" />
+    <Compile Include="Migrations\201812101854560_Consult.Designer.cs">
+      <DependentUpon>201812101854560_Consult.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812011550365_addPrice.resx">
       <DependentUpon>201812011550365_addPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101854560_Consult.resx">
+      <DependentUpon>201812101854560_Consult.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
