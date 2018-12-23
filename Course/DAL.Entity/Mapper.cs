@@ -33,6 +33,10 @@ namespace DAL
                 cfg.CreateMap <Language, DalLanguage> ().ReverseMap();
 
                 cfg.CreateMap <Sex, DalSex> ().ReverseMap();
+
+                cfg.CreateMap<DisabledAd, DalPost>().
+                    ForMember(x => x.PostId, y => y.MapFrom(x => x.PostId)).
+                    ForAllOtherMembers(null);
             });
 
             return config.CreateMapper();

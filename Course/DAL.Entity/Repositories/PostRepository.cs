@@ -54,7 +54,7 @@ namespace DAL
         {
             return _context.Posts.
                 Where(p => p.IsAd).
-                Include(p=>p.User).
+                Include(p => p.User).
                 OrderByDescending(p => p.UploadDate).
                 AsEnumerable().
                 Select(p => Mapper.CreateMap().Map<DalPost>(p));
@@ -123,6 +123,20 @@ namespace DAL
             }
 
             return list;
+        }
+
+        public void DeleteAdForUser(int postId, int userId)
+        {
+            _context.DisabledAds.Add(new DisabledAd { PostId = postId, UserId = userId });
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<DalPost> GetDisabledAds(int userId)
+        {
+            return _context.DisabledAds.
+                Where(da => da.UserId == userId).
+                AsEnumerable().
+                Select(da => Mapper.CreateMap().Map<DalPost>(da));
         }
     }
 }

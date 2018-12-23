@@ -24,5 +24,9 @@ namespace DAL.Interface.Repository
         void DislikePost(int postId, int userId);
 
         IEnumerable<string> FindTag(string tag);
+
+        void DeleteAdForUser(int postId, int userId);
+
+        IEnumerable<DalPost> GetDisabledAds(int userId);
     }
 }

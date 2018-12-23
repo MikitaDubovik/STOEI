@@ -9,7 +9,7 @@
         if (p.IsAd)
         {
             <div id="image-@i" class="col-lg-4 col-md-6 col-sm-12 col-12 image" style="padding-bottom: 0px !important">
-                <a href="@Url.Action("DeletePost", "Profile", new {postId = p.ImageUrl})" class="fancybox-close-small" title="Delete"></a>
+                <a href="@Url.Action("DeleteAddPost", "Posts", new {postUrl = p.ImageUrl})" class="fancybox-close-small" title="Delete"></a>
                 <div class="shadow">
                     <a id="fullsize-@i" href="@p.ImageUrl" data-type="image" data-fancybox="images">
                         <img id="img-@i" src="@p.ImageUrl" class="viewImage" />

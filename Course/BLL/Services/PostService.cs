@@ -25,6 +25,16 @@ namespace BLL.Services
             return Mapper.CreateMap().Map<BllUser>(_userRepository.GetById(id));
         }
 
+        public void DeleteAdForUser(int postId, int userId)
+        {
+            _postRepository.DeleteAdForUser(postId, userId);
+        }
+
+        public IEnumerable<BllPost> GetDisabledAds(int userId)
+        {
+            return _postRepository.GetDisabledAds(userId).Select(p => Mapper.CreateMap().Map<BllPost>(p));
+        }
+
         public IEnumerable<BllPost> GetAllWithoutAd(int skip, int take)
         {
             return _postRepository.GetAllWithoutAd(skip, take).Select(p => Mapper.CreateMap().Map<BllPost>(p));

@@ -9,10 +9,29 @@ namespace MvcPL.Helper
     {
         public static List<BllPost> AdPosts { get; set; } = new List<BllPost>();
 
-        public static BllPost GetAd(int? ageId, int? sexId, int? countryId, int? languageId)
+        public static BllPost GetAd(List<BllPost> disabledPosts, int? ageId, int? sexId, int? countryId, int? languageId)
         {
-            var temp = AdPosts;
+            var tempList = new List<BllPost>();
 
+            foreach (var adPost in AdPosts)
+            {
+                var flag = false;
+                foreach (var disabledPost in disabledPosts)
+                {
+                    if (adPost.PostId == disabledPost.PostId)
+                    {
+                        flag = true;
+                    }
+                }
+
+                if (!flag)
+                {
+                    tempList.Add(adPost);
+                }
+            }
+
+            var temp = tempList.Any() ? tempList : AdPosts;
+            
             if (ageId.HasValue)
             {
                 temp = temp.Where(t => t.AgeId == ageId).ToList();
@@ -20,7 +39,7 @@ namespace MvcPL.Helper
 
             if (!temp.Any())
             {
-                temp = AdPosts;
+                temp = tempList;
             }
 
             var superTemp = temp;
@@ -81,11 +100,6 @@ namespace MvcPL.Helper
             var index = random.Next(0, AdPosts.Count);
 
             return AdPosts.ElementAt(index);
-        }
-
-        public static void Update(BllPost newPost)
-        {
-            AdPosts.Add(newPost);
         }
 
         public static void Initialize(IEnumerable<BllPost> newPost)

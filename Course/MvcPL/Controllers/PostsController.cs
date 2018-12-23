@@ -151,7 +151,8 @@ namespace MvcPL.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var user = _accountService.GetUserByLogin(User.Identity.Name);
-                ad = AdHelper.GetAd(user.AgeId, user.SexId, user.CountryId, user.LanguageId);
+                var disabledAds = _postService.GetDisabledAds(user.UserId).ToList();
+                ad = AdHelper.GetAd(disabledAds, user.AgeId, user.SexId, user.CountryId, user.LanguageId);
                 imagesOnPage -= 1;
             }
             else
@@ -260,6 +261,14 @@ namespace MvcPL.Controllers
 
             var model = new PaginationViewModel<CommentViewModel> { PageInfo = pageInfo, Items = comments };
             return PartialView("_Comments", model);
+        }
+
+        public ActionResult DeleteAddPost(string postUrl)
+        {
+            var postId = postUrl.Split('/').Last();
+            var user = _accountService.GetUserByLogin(User.Identity.Name);
+            _postService.DeleteAdForUser(int.Parse(postId), user.UserId);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -36,5 +36,9 @@ namespace BLL.Interface.Services
         void Delete(int postId);
 
         BllUser GetAuthorById(int id);
+
+        void DeleteAdForUser(int postId, int userId);
+
+        IEnumerable<BllPost> GetDisabledAds(int userId);
     }
 }
